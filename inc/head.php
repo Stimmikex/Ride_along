@@ -1,4 +1,5 @@
 <?php
+	require_once 'core/db_connect.php';
 	$websiteName = 'Ride Request';
 ?>
 <meta charset="utf-8">
