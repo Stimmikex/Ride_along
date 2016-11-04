@@ -1,8 +1,8 @@
 <?php
-	$dbuser = 'id139069_ride_request';
-	$dbpass = 'Tækniskólinn2016';
+	$dbuser = 'riderequest';
+	$dbpass = '';
 	$dbhost = 'localhost';
-	$dbname = 'id139069_ride_request';
+	$dbname = 'my_riderequest';
 
 	try {
 		$db = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);
