@@ -1,8 +1,8 @@
 <?php
-	$dbuser = 'riderequest';
-	$dbpass = '';
-	$dbhost = 'localhost';
-	$dbname = 'my_riderequest';
+	$dbuser = '2509972569';
+	$dbpass = 'mypassword';
+	$dbhost = 'tsuts.tskoli.is';
+	$dbname = '2509972569_hopverkefni_h2016';
 
 	try {
 		$db = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);
