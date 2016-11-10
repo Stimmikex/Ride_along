@@ -1,5 +1,10 @@
+$footerHeight: 15em;
+$headerHeight: 5em;
+$baseColor: #AD001D;
+
 @import 'normalize';
 @import 'boilerplate';
+@import 'mixins';
 
 * {
 	box-sizing: border-box;
@@ -9,6 +14,63 @@ html, body {
 	width: 100%;
 	height: 100%;
 	margin: 0;
-	padding: 0.1em;
+	padding: 0;
 	font-family: Arial, Helvetica, Sans-serif;
+}
+header {
+	width: 100%;
+	height: $headerHeight;
+	padding: 0.1em;
+	background-color: $baseColor;
+}
+.content-wrap {
+	width: 50%;
+	min-height: 100%;
+	margin-top: -$headerHeight;
+	margin-bottom: -$footerHeight;
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: $headerHeight;
+}
+.content-wrap:after {
+	content: "";
+	display: block;
+	height: $footerHeight;
+}
+footer {
+	width: 100%;
+	height: $footerHeight;
+	padding: 0.1em 0 0 0;
+	background-color: $baseColor;
+	color: white;
+}
+.top-footer {
+	height: 70%;
+}
+.bottom-footer {
+	height: 30%;
+	background-color: $baseColor * 0.8;
+	padding: 1.25em 0 0 0;
+
+	.copyright-text {
+		text-align: center;
+		margin: 0;
+	}
+}
+.col-1-2 {
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+.flex-container {
+	@include FlexContainer();
+}
+.footer-padding {
+	padding: 0.5em;
+}
+
+@media screen and (min-width: 48em) {
+	.col-1-2 {
+		width: 50%;
+	}
 }
