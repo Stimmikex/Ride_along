@@ -7,4 +7,4 @@
 		</ul>
 	</nav>
 </header>
-<div class="page-wrap">
+<h1 align="center">THIS WEBSITE IS UNDER CONSTRUCTION!</h1>
