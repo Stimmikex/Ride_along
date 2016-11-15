@@ -8,7 +8,7 @@
 	</nav> -->
 	<nav class="navBar">
 	  <nav class="wrapper">
-	    <div class="logo"></div><!-- Logo -->
+	    <div class="logo"><a href="../index.php" class="home-button"></a></div><!-- Logo -->
 	    <input type="checkbox" id="menu-toggle">
 	      <label for="menu-toggle" class="label-toggle"></label>
 	    </input>
