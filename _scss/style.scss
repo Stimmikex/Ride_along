@@ -5,6 +5,7 @@ $baseColor: #AD001D;
 @import 'normalize';
 @import 'boilerplate';
 @import 'mixins';
+@import 'header';
 
 * {
 	box-sizing: border-box;
@@ -20,7 +21,7 @@ html, body {
 header {
 	width: 100%;
 	height: $headerHeight;
-	padding: 0.1em;
+	padding: 0;
 	background-color: $baseColor;
 }
 .content-wrap {
