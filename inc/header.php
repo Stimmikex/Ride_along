@@ -1,3 +1,9 @@
+<?php
+  	$actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+  	$url = trim($actual_link, '/');
+  	$page_name1 = substr($url, strrpos($url, '/')+1);
+	$page_name2 = substr($page_name1, count($page_name1)-1, -4); 
+?>
 <header>
 <!-- 	<nav>
 		<ul class="nav-menu">
@@ -14,8 +20,8 @@
 	    </input>
 	    <ul>
 	      <a href="index.php"><li>Home</li></a>
-	      <a href="#"><li>Hello</li></a>
-	      <a href="#"><li>World</li></a>
+	      <a href="register.php"><li>Register</li></a>
+	      <a href="login.php"><li>Login</li></a>
 	    </ul>
 	  </nav>
 	</nav>

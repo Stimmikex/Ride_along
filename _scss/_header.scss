@@ -87,7 +87,7 @@ nav {
       text-decoration: none;
       transition: all .5s ease;
       margin: 0;
-        border-style: none;
+        border-style: none; //needs to be fixed
       padding: $headerHeight - 3.2;
 
       &:hover {color: $color3;}
@@ -133,7 +133,7 @@ nav {
       padding: 2em 0;
     }
     a {
-    	border-left: solid 1px $color1;
+    	border-left: solid 1px $color1; //needs to be fixed
     }
     .home-button {
 		width: 45px;

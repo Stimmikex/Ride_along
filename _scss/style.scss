@@ -38,6 +38,12 @@ header {
 	display: block;
 	height: $footerHeight;
 }
+form {
+	input {
+		display: block;
+		width: 100%;
+	}
+}
 footer {
 	width: 100%;
 	height: $footerHeight;
