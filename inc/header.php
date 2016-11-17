@@ -12,19 +12,17 @@
 			<li><a href="#">World</a></li>
 		</ul>
 	</nav> -->
-	<nav class="navBar">
-	  <nav class="wrapper">
-	    <div class="logo"><a href="../index.php" class="home-button"></a></div><!-- Logo -->
-	    <input type="checkbox" id="menu-toggle">
-	      <label for="menu-toggle" class="label-toggle"></label>
-	    </input>
-	    <ul>
-	      <a href="index.php"><li>Home</li></a>
-	      <a href="register.php"><li>Register</li></a>
-	      <a href="login.php"><li>Login</li></a>
-	    </ul>
-	  </nav>
-	</nav>
+  <nav class="wrapper">
+    <div class="logo"><a href="index.php" class="home-button"><img src="img/carpool.png"></a></div><!-- Logo -->
+    <input type="checkbox" id="menu-toggle">
+      <label for="menu-toggle" class="label-toggle"></label>
+    </input>
+    <ul>
+      	<li><a href="index.php">Home</a></li>
+      	<li><a href="register.php">Register</a></li>
+      	<li><a href="login.php">Login</a></li>
+    </ul>
+  </nav>
 </header>
 <div class="content-wrap">
 	<h3 align="center">THIS WEBSITE IS UNDER CONSTRUCTION!</h3>
