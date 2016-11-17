@@ -13,6 +13,10 @@
 </footer>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script src="js/plugins.js"></script>
+<script src="js/geolocation.js"></script>
 <script src="js/sha512.js"></script>
 <script src="js/forms.js"></script>
+<script type="text/javascript">
+	geolocation();
+</script>
 <?php $db = null; ?>

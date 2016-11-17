@@ -12,6 +12,7 @@
 		<![endif]-->
 		<?php require_once 'inc/header.php'; ?>
 		<p>Ello!</p>
+		<p id="geolocation"></p>
 		<?php require_once 'inc/footer.php'; ?>
 	</body>
 </html>
