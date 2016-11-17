@@ -26,3 +26,6 @@
 </header>
 <div class="content-wrap">
 	<h3 align="center">THIS WEBSITE IS UNDER CONSTRUCTION!</h3>
+		<!--[if lt IE 8]>
+			<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+		<![endif]-->
