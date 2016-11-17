@@ -3,15 +3,29 @@
   	$url = trim($actual_link, '/');
   	$page_name1 = substr($url, strrpos($url, '/')+1);
 	$page_name2 = substr($page_name1, count($page_name1)-1, -4); 
+
+	include_once 'core/fb_config.php';
+	include_once 'core/functions.php';
+
+	$logged = null;
+
+	if ($fbuser) {
+		$logged = 'in';
+	} else {
+		$logged = 'out';
+	}
+
+	if(!$fbuser){
+		$fbuser = null;
+		$loginUrl = $facebook->getLoginUrl(array('redirect_uri'=>$homeurl,'scope'=>$fbPermissions));
+		$output = '<a href="'.$loginUrl.'"><img src="img/fb_login.png"></a>';
+	}else{
+		$user_profile = $facebook->api('/me?fields=id,first_name,last_name,email,gender,locale,picture');
+		$user = new Users($db);
+		$user_data = $user->checkUser('facebook',$user_profile['id'],$user_profile['first_name'],$user_profile['last_name'],$user_profile['email'],$user_profile['gender'],$user_profile['locale'],$user_profile['picture']['data']['url']);
+	}
 ?>
 <header>
-<!-- 	<nav>
-		<ul class="nav-menu">
-			<li><a href="index.php" class="nav-class">Home</a></li>
-			<li><a href="#">Hello</a></li>
-			<li><a href="#">World</a></li>
-		</ul>
-	</nav> -->
   <nav class="wrapper">
     <div class="logo"><a href="index.php" class="home-button"><img src="img/carpool.png"></a></div><!-- Logo -->
     <input type="checkbox" id="menu-toggle">
@@ -19,8 +33,15 @@
     </input>
     <ul>
       	<li><a href="index.php">Home</a></li>
-      	<li><a href="register.php">Register</a></li>
-      	<li><a href="login.php">Login</a></li>
+      	<?php 
+      	if ($logged === 'in') {
+      		echo '<li><a href="profile.php"><img src="'.$user_data['picture'].'" class="header_img"> Profile</a></li>';
+      		echo '<li><a href="logout.php?logout">Logout</a></li>';
+      	}
+      	else {
+      		echo '<li><a href="login.php">Login</a></li>';
+      	}
+      	?>
     </ul>
   </nav>
 </header>

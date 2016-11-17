@@ -8,17 +8,18 @@
 	</head>
 	<body>
 		<?php require_once 'inc/header.php'; ?>
-		<p>This is the login page!</p>
-		<h1 class="page_title"><?php echo $page_name2; ?></h1>
-		<form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST" accept-charset="UTF-8">
-			<label for="icon_email">Email:*</label>
-			<input type="text" name="email" required>
-			<label for="password">Password:*</label>
-			<input type="password" name="password" id="login-password" required>
-			<input type="button" class="btn waves-effect waves-light" value="Login" id="login-button" onclick="formhash(this.form, this.form.password);">
-			<!--<button class="btn waves-effect waves-light" value="Login" id="login-button" onclick="formhash(this.form, this.form.password);">Submit</button>-->
-			<a href="register.php" align="center">If you don't have an account you can register here.</a>
-		</form>
+		<?php
+		if(!$fbuser){
+				$fbuser = null;
+				$loginUrl = $facebook->getLoginUrl(array('redirect_uri'=>$homeurl,'scope'=>$fbPermissions));
+				$output = '<a href="'.$loginUrl.'"><img src="img/fb_login.png"></a>';
+			}else{
+				$user_profile = $facebook->api('/me?fields=id,first_name,last_name,email,gender,locale,picture');
+				$user = new Users($db);
+				$user_data = $user->checkUser('facebook',$user_profile['id'],$user_profile['first_name'],$user_profile['last_name'],$user_profile['email'],$user_profile['gender'],$user_profile['locale'],$user_profile['picture']['data']['url']);
+			}
+			echo $output;
+		?>
 		<?php require_once 'inc/footer.php'; ?>
 	</body>
 </html>

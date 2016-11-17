@@ -44,11 +44,18 @@ nav {
 		padding: 0.5em 0;
 		color: $color1;
     }
-    img {
-    	width: 2.5em;
-	    height: 2.5em;
-	    margin: 1em;
+    .logo {
+    	img {
+    		width: 2.5em;
+	    	height: 2.5em;
+	    	margin: 1em;
+		}
     }
+    .header_img {
+	    width: auto;
+		height: 100%;
+	    margin: 0;
+	}
 }
     .home-button {
 		width: 45px;
