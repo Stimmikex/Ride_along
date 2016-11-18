@@ -9,4 +9,4 @@
 # TECHNOLOGY COLOPHON
 
     CSS3, HTML5
-    jQuery, Normalize.css
+    jQuery, Normalize.css, Moment.js
