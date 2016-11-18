@@ -21,6 +21,7 @@
 </footer>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script src="js/plugins.js"></script>
+<script src="js/moment.js"></script>
 <script src="js/geolocation.js"></script>
 <script src="js/footer_clock.js"></script>
 <?php $db = null; ?>
