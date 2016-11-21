@@ -13,7 +13,7 @@
 		?>
 		<ul>
 			<li><a href="#">Offer a ride</a></li>
-			<li><a href="#">Request a ride</a></li>
+			<li><a href="request.php">Request a ride</a></li>
 		</ul>
 		<?php
 			} else {
