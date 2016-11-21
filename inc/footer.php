@@ -9,6 +9,11 @@
 					<div id="second" class="hero-second"></div>
 				</div>
 			</div>
+			<div>
+				<script type="text/javascript">
+					moment().format('hh:mm:ss');
+				</script>
+			</div>
 		</div>
 		<div class="col-1-2 flex-container footer-padding">
 			<div class="col-1-2"></div>
