@@ -1,5 +1,5 @@
 <?php
-	$pageName = 'insert_name';
+	$pageName = 'Request';
 ?>
 <!DOCTYPE html>
 <html class="no-js" lang="IS_is">
@@ -8,8 +8,13 @@
 	</head>
 	<body>
 		<?php require_once 'inc/header.php'; ?>
+		<?php
+			if ($logged === "out") {
+				header('Location: index.php');
+			}
+		?>
 		<form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST" accept-charset="UTF-8">
-			<label>Location of pickup</label>
+			<label>Nearest Location</label>
 			<select name="from" class="request_location">
 				<option value="-1" disabled selected>Pick</option>
 			    <?php
@@ -26,8 +31,6 @@
 			<select name="to" class="request_location">
 				<option value="-1" disabled selected>Pick</option>
 			    <?php
-					$query = "SELECT id, name FROM location ORDER BY name ASC";
-					$res = $db->prepare($query);
 					$res->execute();
 
 					while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
@@ -37,8 +40,10 @@
 					$res = null;
 				?>
 			</select>
+			<label>Message</label>
 			<div class="input-field">
-				<textarea class="request_message" name="message"></textarea>
+				<textarea class="request_message" id="textarea" name="message" maxlength="200"></textarea>
+				<div id="textarea_feedback"></div>
 			</div>
 			<input type="submit" name="submit" value="Add" class="request_submit">
 			<?php
@@ -71,5 +76,18 @@
 			?>
 		</form>
 		<?php require_once 'inc/footer.php'; ?>
+		<script type="text/javascript">
+			$(document).ready(function() {
+			    var text_max = 200;
+			    $('#textarea_feedback').html(text_max + ' characters remaining');
+
+			    $('#textarea').keydown(function() {
+			        var text_length = $('#textarea').val().length;
+			        var text_remaining = text_max - text_length;
+
+			        $('#textarea_feedback').html(text_remaining + ' characters remaining');
+			    });
+			});
+		</script>
 	</body>
 </html>

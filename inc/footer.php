@@ -28,9 +28,10 @@
 <script src="js/moment.js"></script>
 <script src="js/geolocation.js"></script>
 <script src="js/footer_clock.js"></script>
+<script src="js/google_maps.js"></script>
 <script type="text/javascript">
 	function update() {
-		$('#dgi').html(moment().format('hh:mm:ss'));
+		$('#dgi').html(moment().format('H:mm:ss'));
 	}
 
 	setInterval(update, 1000);

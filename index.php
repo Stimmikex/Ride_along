@@ -12,8 +12,9 @@
 			if ($logged === 'in') {
 		?>
 		<ul>
-			<li><a href="#">Offer a ride</a></li>
+			<li><a href="offer.php">Offer a ride</a></li>
 			<li><a href="request.php">Request a ride</a></li>
+			<li><a href="planner.php">Dayplan</a></li>
 		</ul>
 		<?php
 			} else {
