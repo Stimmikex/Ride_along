@@ -9,10 +9,7 @@
 					<div id="second" class="hero-second"></div>
 				</div>
 			</div>
-			<div>
-				<script type="text/javascript">
-					moment().format('hh:mm:ss');
-				</script>
+			<div id="dgi">
 			</div>
 		</div>
 		<div class="col-1-2 flex-container footer-padding">
@@ -31,4 +28,11 @@
 <script src="js/moment.js"></script>
 <script src="js/geolocation.js"></script>
 <script src="js/footer_clock.js"></script>
+<script type="text/javascript">
+	function update() {
+		$('#dgi').html(moment().format('hh:mm:ss'));
+	}
+
+	setInterval(update, 1000);
+</script>
 <?php $db = null; ?>
