@@ -11,6 +11,20 @@
 
 	if ($fbuser) {
 		$logged = 'in';
+
+		$oauth_uid = $_SESSION['fb_238722499878103_user_id'];
+		$userID = null;
+
+		$userIdQuery = 'SELECT id FROM users WHERE oauth_uid=:oauth_uid LIMIT 1';
+		$userIdRes = $db->prepare($userIdQuery);
+		$userIdRes->bindParam(':oauth_uid', $oauth_uid);
+		$userIdRes->execute();
+
+		while ($row = $userIdRes->fetch(PDO::FETCH_ASSOC)) {
+			$userID = $row['id'];
+		}
+
+		$userIdQuery = $userIdRes = null;
 	} else {
 		$logged = 'out';
 	}
