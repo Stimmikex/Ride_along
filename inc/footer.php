@@ -13,7 +13,16 @@
 			</div>
 		</div>
 		<div class="col-1-2 flex-container footer-padding">
-			<div class="col-1-2"></div>
+			<div class="col-1-2">
+				<?php
+				  // $day = date("N", $timestamp - 1)
+				  // $scheduleQuery = "SELECT day, leaving, to_id, from_id, plan_id FROM weekplanner WHERE day = :day"
+				  // $scheduleRes = $db->prepare($query);
+				  // $scheduleRes->bindParam(':day', $day);
+				  // $scheduleRes->execute();
+
+				?>
+			</div>
 			<div class="col-1-2">
 				<p><b>WARNING!</b><br>You have to be 18 or older to use this site!<br>We are not responsible for anything our users do or say!</p>
 			</div>
