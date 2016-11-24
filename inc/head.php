@@ -1,6 +1,8 @@
 <?php
 	require_once 'core/db_connect.php';
 	$websiteName = 'Ride Request';
+
+	$days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 ?>
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">

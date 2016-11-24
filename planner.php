@@ -1,7 +1,5 @@
 <?php
 	$pageName = 'Planner';
-
-	$days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 ?>
 <!DOCTYPE html>
 <html class="no-js" lang="IS_is">
