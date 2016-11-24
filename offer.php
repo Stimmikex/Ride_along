@@ -46,16 +46,24 @@
 					$toID = $_POST['to'];
 					$fromID = $_POST['from'];
 
-					$checkQuery = "SELECT message, time_stamp, user_id FROM request WHERE to_id=:to_id AND from_id=:from_id ORDER BY id ASC";
+					$checkQuery = "SELECT message, time_stamp, user_id FROM request WHERE to_id=:to_id AND from_id=:from_id AND available=1 ORDER BY id ASC";
 					$checkRes = $db->prepare($checkQuery);
 					$checkRes->bindParam(':to_id', $toID);
 					$checkRes->bindParam(':from_id', $fromID);
 					$checkRes->execute();
 
 					if ($checkRes->rowCount() > 0) {
+						$counter = 0;
+
+						echo '<div style="display:none;" id="data"><span id="datalength">'.$checkRes->rowCount().'</span>';
+
 						while ($row = $checkRes->fetch(PDO::FETCH_ASSOC)) {
-							echo '<p>'.$row['user_id'].', '.$row['time_stamp'].', '.$row['message'].'</p>';
+							echo '<span id="data'.$counter.'">'.$row['user_id'].';'.$row['time_stamp'].';'.$row['message'].'</span>';
+
+							$counter++;
 						}
+
+						echo '</div>';
 					} else {
 						echo '<h3>No requests found.</h3>';
 					}
@@ -65,5 +73,18 @@
 			}
 		?>
 		<?php require_once 'inc/footer.php'; ?>
+		<script type="text/javascript">
+			$(function() {
+				let data = [];
+
+				for (let i = 0; i < parseInt($('#datalength').text()); i++) {
+					let tmpUserID = $('#data' + i).text().split(';')[0];
+					let tmpTimeStamp = $('#data' + i).text().split(';')[1];
+					let tmpMessage = $('#data' + i).text().split(';')[2];
+
+					data[i] = [tmpUserID, tmpTimeStamp, tmpMessage];
+				}
+			});
+		</script>
 	</body>
 </html>
