@@ -25,6 +25,8 @@
 		}
 
 		$userIdQuery = $userIdRes = null;
+
+		echo '<div style="display:none;" id="user_id_div">'.$userID.'</div>';
 	} else {
 		$logged = 'out';
 	}
@@ -49,7 +51,7 @@
       	<li><a href="index.php">Home</a></li>
       	<?php 
       	if ($logged === 'in') {
-      		echo '<li><a href="profile.php"><img src="'.$user_data['picture'].'" class="header_img"> Profile</a></li>';
+      		echo '<li><a href="profile.php"><img src="'.$user_data['picture'].'" class="header_img"> Profile <span class="notification_count"></span></a></li>';
       		echo '<li><a href="logout.php?logout">Logout</a></li>';
       	}
       	else {
