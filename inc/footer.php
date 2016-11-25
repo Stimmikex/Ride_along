@@ -2,13 +2,6 @@
 <footer>
 	<div class="top-footer flex-container">
 		<div class="col-1-2 footer-padding">
-			<div class="hero-circle">
-				<div class="hero-face">
-					<div id="hour" class="hero-hour"></div>
-					<div id="minute" class="hero-minute"></div>
-					<div id="second" class="hero-second"></div>
-				</div>
-			</div>
 			<div id="dgi">
 			</div>
 		</div>
@@ -74,7 +67,6 @@
 <script src="js/plugins.js"></script>
 <script src="js/moment.js"></script>
 <script src="js/geolocation.js"></script>
-<script src="js/footer_clock.js"></script>
 <script src="js/google_maps.js"></script>
 <script src="js/notifications.js"></script>
 <script type="text/javascript">
