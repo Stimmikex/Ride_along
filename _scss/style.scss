@@ -34,6 +34,18 @@ header {
 	margin-right: auto;
 	padding-top: $headerHeight;
 }
+.index_ul {
+	padding: 0;
+	li {
+		padding: 1em;
+		list-style: none;
+		border: solid black 1px;
+		a {
+			width: 100%;
+			height: 100%;
+		}
+	}	
+}
 .content-wrap:after {
 	content: "";
 	display: block;

@@ -11,7 +11,7 @@
 		<?php
 			if ($logged === 'in') {
 		?>
-		<ul>
+		<ul class="index_ul">
 			<li><a href="offer.php">Offer a ride</a></li>
 			<li><a href="request.php">Request a ride</a></li>
 			<li><a href="planner.php">Dayplan</a></li>
