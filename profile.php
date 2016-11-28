@@ -27,6 +27,9 @@
 			}
 		?>
 		<div><?php echo $output; ?></div>
+		<div>
+			<a href="delete_plan.php">Delete Plans</a>
+		</div>
 		<?php
 			} else {
 				header('Location: index.php');
