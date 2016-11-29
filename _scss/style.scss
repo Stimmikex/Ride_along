@@ -97,6 +97,9 @@ footer {
 }
 .footer_planner_ul {
 	padding: 0;
+	li {
+		list-style: none;
+	}
 }
 .profile-cover {
 	width: 100%;

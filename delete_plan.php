@@ -24,7 +24,8 @@
 
 			while ($row = $scheduleRes->fetch(PDO::FETCH_ASSOC)) {
 				echo '<h4>'.$row['plan_name'].'</h4>';
-				echo '<li class="footer_planner"><form method="post">';
+				echo '<a href="info_plan.php?id='.$row['id'].'">Info</a>';
+				echo '<li><form method="post">';
 				// echo $days[$day].", ".$row['leaving'].", ".$row['to_id'].", ".$row['from_id'].", ".$row['plan_id'];
 				// $locationRes->bindParam(':location_id', $row['from_id']);
 				// $locationRes->execute();
