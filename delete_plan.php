@@ -10,15 +10,10 @@
 		<?php require_once 'inc/header.php'; ?>
 		<?php
 
-			$scheduleQuery = "SELECT weekplanner.day AS day, 
-								weekplanner.leaving AS leaving, 
-								weekplanner.to_id AS to_id, 
-								weekplanner.from_id AS from_id, 
-								weekplanner.plan_id AS plan_id,
-								planner.id AS id
-								FROM weekplanner
-									JOIN planner ON weekplanner.plan_id=planner.id
-								WHERE planner.user_id=:user_id AND planner.id = weekplanner.plan_id ";
+			$scheduleQuery = "SELECT id,
+										plan_name
+									FROM planner
+										WHERE user_id=:user_id";
 			$scheduleRes = $db->prepare($scheduleQuery);
 			$scheduleRes->bindParam(':user_id', $userID);
 			$scheduleRes->execute();
@@ -28,39 +23,44 @@
 			echo '<ul class="footer_planner_ul">';
 
 			while ($row = $scheduleRes->fetch(PDO::FETCH_ASSOC)) {
-				echo '<h4>'.$days[$row['day']].'</h4>';
-				echo '<li class="footer_planner"><from method="post">Time: '.$row['leaving'].'<br>';
+				echo '<h4>'.$row['plan_name'].'</h4>';
+				echo '<li class="footer_planner"><form method="post">';
 				// echo $days[$day].", ".$row['leaving'].", ".$row['to_id'].", ".$row['from_id'].", ".$row['plan_id'];
-				$locationRes->bindParam(':location_id', $row['from_id']);
-				$locationRes->execute();
+				// $locationRes->bindParam(':location_id', $row['from_id']);
+				// $locationRes->execute();
 				
-				while ($row2 = $locationRes->fetch(PDO::FETCH_ASSOC)) {
-					echo 'From: '.$row2['name'].'<br>';
-				}
+				// while ($row2 = $locationRes->fetch(PDO::FETCH_ASSOC)) {
+				// 	echo 'From: '.$row2['name'].'<br>';
+				// }
 				
-				$locationRes->bindParam(':location_id', $row['to_id']);
-				$locationRes->execute();
+				// $locationRes->bindParam(':location_id', $row['to_id']);
+				// $locationRes->execute();
 
-				while ($row2 = $locationRes->fetch(PDO::FETCH_ASSOC)) {
-					echo 'To: '.$row2['name'].'<br>';
-					echo $row['plan_id'];
-				}
+				// while ($row2 = $locationRes->fetch(PDO::FETCH_ASSOC)) {
+				// 	echo 'To: '.$row2['name'].'<br>';
+				// }
 				?>
 				  	<!--<button type='submit' name='delete' value=".$row['plan_id']." class='delete_planner'>Delete</button>-->
-					<input type='submit' name='delete' value='Delete' class='delete_planner'>
+					<input type="submit" name="delete_<?php echo $row['id']; ?>" value="Delete" class="delete_planner">
 
 				<?php
-					if (isset($_POST['delete'])) {
+					if (isset($_POST['delete_'.$row['id']])) {
 						echo "true";
-						$deletePlan = "DELETE FROM planner WHERE plan_id = :plans_id";
+						$deleteQuery = "DELETE FROM weekplanner WHERE plan_id = :plan_id";
+						$deleteRes = $db->prepare($deleteQuery);
+						$deleteRes->bindParam(':plan_id', $row['id']);
+						$deleteRes->execute();
+						$deleteRes = null;
+
+						$deletePlan = "DELETE FROM planner WHERE id = :plans_id";
 						$deletePlanRes = $db->prepare($deletePlan);
-						$deletePlanRes->bindParam(':plans_id', $row['plan_id']);
-						$deletePlanRes->bindParam(':deleted', $_POST['Delete']);
+						$deletePlanRes->bindParam(':plans_id', $row['id']);
 						$deletePlanRes->execute();
+						$deletePlanRes = null;
 
 						header('Location: profile.php');
 					}
-				echo "</from>";
+				echo '</form>';
 				echo '</li>';
 			}
 			echo '</ul>';
