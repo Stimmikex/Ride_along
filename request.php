@@ -12,6 +12,33 @@
 			if ($logged === "out") {
 				header('Location: index.php');
 			}
+
+			$SelectQuery = "SELECT id FROM request WHERE user_id = :userID AND available = 1 LIMIT 1";
+			$SelectRes = $db->prepare($SelectQuery);
+			$SelectRes->bindParam(':userID', $userID);
+			$SelectRes->execute();
+
+			if ($SelectRes->rowCount() > 0) {
+				echo '<form action="" method="POST">';
+				echo '<input type="submit" name="cancel" value="Cancel Request">';
+				echo '</form>';
+
+				if (isset($_POST['cancel'])) {
+					$rideID = null;
+
+					while ($row = $SelectRes->fetch(PDO::FETCH_ASSOC)) {
+						$rideID = $row['id'];
+					}
+
+					$updateQuery = "UPDATE request SET available=0 WHERE id=:id";
+					$updateRes = $db->prepare($updateQuery);
+					$updateRes->bindParam(':id', $rideID);
+					$updateRes->execute();
+					$updateRes = null;
+
+					header('Location: request.php');
+				}
+			} else {
 		?>
 		<form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST" accept-charset="UTF-8">
 			<label>Nearest Location</label>
@@ -62,6 +89,11 @@
 				}
 			?>
 		</form>
+		<?php
+			}
+
+			$SelectRes = null;
+		?>
 		<?php require_once 'inc/footer.php'; ?>
 		<script type="text/javascript">
 			$(document).ready(function() {
