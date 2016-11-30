@@ -28,6 +28,7 @@
 		?>
 		<div><?php echo $output; ?></div>
 		<div>
+			<a href="match.php">Matches</a><br>
 			<a href="delete_plan.php">Delete Plans</a>
 		</div>
 		<?php

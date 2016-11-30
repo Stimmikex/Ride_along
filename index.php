@@ -9,6 +9,9 @@
 	<body>
 		<?php require_once 'inc/header.php'; ?>
 		<?php
+		if (isset($_GET['code'])) {
+			header('location: index.php');
+		}
 			if ($logged === 'in') {
 		?>
 		<ul class="index_ul">
