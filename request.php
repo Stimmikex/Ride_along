@@ -86,6 +86,8 @@
 					$rideRes->bindParam(':message', $message);
 					$rideRes->bindParam(':user_id', $userID);
 					$rideRes->execute();
+
+					header('Location: request.php');
 				}
 			?>
 		</form>

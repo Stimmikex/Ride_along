@@ -1,5 +1,5 @@
 <?php
-	$pageName = 'insert_name';
+	$pageName = 'Profile';
 ?>
 <!DOCTYPE html>
 <html class="no-js" lang="IS_is">
