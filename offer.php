@@ -46,7 +46,17 @@
 					$toID = $_POST['to'];
 					$fromID = $_POST['from'];
 
-					$checkQuery = "SELECT message, time_stamp, user_id FROM request WHERE to_id=:to_id AND from_id=:from_id AND available=1 ORDER BY id ASC";
+					$checkQuery = "SELECT request.message AS request_message,
+											request.time_stamp AS request_time,
+											users.fname AS user_name,
+											users.picture AS user_picture
+												FROM request
+											INNER JOIN users
+												ON request.user_id=users.id
+											WHERE request.to_id=:to_id
+											AND request.from_id=:from_id
+											AND request.available=1
+												ORDER BY request.id ASC";
 					$checkRes = $db->prepare($checkQuery);
 					$checkRes->bindParam(':to_id', $toID);
 					$checkRes->bindParam(':from_id', $fromID);
@@ -58,12 +68,14 @@
 						echo '<div style="display:none;" id="data"><span id="datalength">'.$checkRes->rowCount().'</span>';
 
 						while ($row = $checkRes->fetch(PDO::FETCH_ASSOC)) {
-							echo '<span id="data'.$counter.'">'.$row['user_id'].';'.$row['time_stamp'].';'.$row['message'].'</span>';
+							echo '<span id="data'.$counter.'">'.$row['user_name'].';'.$row['user_picture'].';'.$row['request_time'].';'.$row['request_message'].'</span>';
 
 							$counter++;
 						}
 
 						echo '</div>';
+
+						echo '<div class="user_info"></div>';
 					} else {
 						echo '<h3>No requests found.</h3>';
 					}
@@ -76,13 +88,34 @@
 		<script type="text/javascript">
 			$(function() {
 				let data = [];
+				let dataLength = parseInt($('#datalength').text());
+				let index = 0;
 
-				for (let i = 0; i < parseInt($('#datalength').text()); i++) {
-					let tmpUserID = $('#data' + i).text().split(';')[0];
-					let tmpTimeStamp = $('#data' + i).text().split(';')[1];
-					let tmpMessage = $('#data' + i).text().split(';')[2];
+				for (let i = 0; i < dataLength; i++) {
+					let tmpUserName = $('#data' + i).text().split(';')[0];
+					let tmpUserPicture = $('#data' + i).text().split(';')[1];
+					let tmpTimeStamp = $('#data' + i).text().split(';')[2];
+					let tmpMessage = $('#data' + i).text().split(';')[3];
 
-					data[i] = [tmpUserID, tmpTimeStamp, tmpMessage];
+					data[i] = [tmpUserName, tmpUserPicture, tmpTimeStamp, tmpMessage];
+				}
+
+				function displayRequest(requestIndex) {
+					$('.user_info').html('<img src="' + data[requestIndex][1] + '"><h3>' + data[requestIndex][0] + '</h3><p><b>Message:</b> ' +
+											data[requestIndex][3] + '</p><p><b>Time of request:</b> ' + data[requestIndex][2] + '</p>' +
+											'<label>Pick up?</label><br><input type="button" value="Yes" class="response_btn"><input type="button" value="No" class="response_btn">');
+					
+					$('.response_btn').on('click', function() {
+						if (requestIndex < dataLength - 1) {
+							displayRequest(requestIndex + 1);
+						} else {
+							$('.user_info').html('<h3>Nothing to display.</h3>');
+						}
+					});
+				}
+
+				if (dataLength > 0) {
+					displayRequest(0);
 				}
 			});
 		</script>
