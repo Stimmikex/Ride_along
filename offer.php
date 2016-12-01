@@ -48,6 +48,7 @@
 
 					$checkQuery = "SELECT request.message AS request_message,
 											request.time_stamp AS request_time,
+											users.id AS user_id,
 											users.fname AS user_name,
 											users.picture AS user_picture
 												FROM request
@@ -68,7 +69,7 @@
 						echo '<div style="display:none;" id="data"><span id="datalength">'.$checkRes->rowCount().'</span>';
 
 						while ($row = $checkRes->fetch(PDO::FETCH_ASSOC)) {
-							echo '<span id="data'.$counter.'">'.$row['user_name'].';'.$row['user_picture'].';'.$row['request_time'].';'.$row['request_message'].'</span>';
+							echo '<span id="data'.$counter.'">'.$row['user_id'].';'.$row['user_name'].';'.$row['user_picture'].';'.$row['request_time'].';'.$row['request_message'].'</span>';
 
 							$counter++;
 						}
@@ -92,24 +93,44 @@
 				let index = 0;
 
 				for (let i = 0; i < dataLength; i++) {
-					let tmpUserName = $('#data' + i).text().split(';')[0];
-					let tmpUserPicture = $('#data' + i).text().split(';')[1];
-					let tmpTimeStamp = $('#data' + i).text().split(';')[2];
-					let tmpMessage = $('#data' + i).text().split(';')[3];
+					data[i] = $('#data' + i).text().split(';');
+				}
 
-					data[i] = [tmpUserName, tmpUserPicture, tmpTimeStamp, tmpMessage];
+				function displayNextRequest(currentIndex) {
+					if (currentIndex < dataLength - 1) {
+						displayRequest(currentIndex + 1);
+					} else {
+						$('.user_info').html('<h3>Nothing to display.</h3>');
+					}
 				}
 
 				function displayRequest(requestIndex) {
-					$('.user_info').html('<img src="' + data[requestIndex][1] + '"><h3>' + data[requestIndex][0] + '</h3><p><b>Message:</b> ' +
-											data[requestIndex][3] + '</p><p><b>Time of request:</b> ' + data[requestIndex][2] + '</p>' +
-											'<label>Pick up?</label><br><input type="button" value="Yes" class="response_btn"><input type="button" value="No" class="response_btn">');
+					$('.user_info').html('<p><b>Request number:</b> ' + (requestIndex + 1) + '/' + dataLength + '</p><img src="' +
+											data[requestIndex][2] + '"><h3>' + data[requestIndex][1] + '</h3><p><b>Message:</b> ' +
+											data[requestIndex][4] + '</p><p><b>Time of request:</b> ' + data[requestIndex][3] + '</p>' +
+											'<label>Pick up?</label><br><input type="button" value="Yes" class="response_btn">' +
+											'<input type="button" value="No" class="response_btn">');
 					
 					$('.response_btn').on('click', function() {
-						if (requestIndex < dataLength - 1) {
-							displayRequest(requestIndex + 1);
+						if ($(this).val() == 'Yes') {
+							$.ajax({
+								method: 'POST',
+								url: 'core/send_notification.php',
+								data: {
+										title: 'Ride request accepted',
+										message: 'Your ride request has been accepted by the driver shown below.',
+										from_user_id: $('#user_id_div').text(),
+										to_user_id: data[requestIndex][0]
+									}
+							}).done(function() {
+								$('.user_info').html('<h4>The user you accepted has been notified.</h4><input type="button" value="Ok" class="ok_btn">');
+								
+								$('.ok_btn').on('click', function() {
+									displayNextRequest(requestIndex);
+								});
+							});
 						} else {
-							$('.user_info').html('<h3>Nothing to display.</h3>');
+							displayNextRequest(requestIndex);
 						}
 					});
 				}
