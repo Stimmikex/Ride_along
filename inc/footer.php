@@ -69,6 +69,7 @@
 <script src="js/geolocation.js"></script>
 <script src="js/google_maps.js"></script>
 <script src="js/notifications.js"></script>
+<script src="js/ism-2.2.min.js"></script>
 <script type="text/javascript">
 	function update() {
 		$('#dgi').html(moment().format('H:mm:ss'));

@@ -23,6 +23,22 @@
 		<?php
 			} else {
 		?>
+		<div class="ism-slider" data-transition_type="fade" id="my-slider">
+		  <ol>
+		    <li>
+		      <img src="img/slides/slider_1.jpg">
+		      <div class="ism-caption ism-caption-0">Get a ride!</div>
+		    </li>
+		    <li>
+		      <img src="img/slides/beautiful-701678_1280.jpg">
+		      <div class="ism-caption ism-caption-0">Make a plan!</div>
+		    </li>
+		    <li>
+		      <img src="img/slides/slider_2.gif">
+		      <div class="ism-caption ism-caption-0">Save money and the world from over heating</div>
+		    </li>
+		  </ol>
+		</div>
 		<p>Please <a href="login.php">log in</a> to offer or request a ride.</p>
 		<?php
 			}
