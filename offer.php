@@ -9,6 +9,10 @@
 	<body>
 		<?php require_once 'inc/header.php'; ?>
 		<?php
+			if ($logged === 'out') {
+				header('Location: index.php');
+			}
+			
 			if (!isset($_POST['check'])) {
 		?>
 		<form action="" method="POST" accept-charset="UTF-8">
