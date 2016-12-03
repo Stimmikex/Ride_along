@@ -40,6 +40,10 @@
 		  </ol>
 		</div>
 		<p>Please <a href="login.php">log in</a> to offer or request a ride.</p>
+		<div>
+			<h4>About Us</h4>
+			<p>RideRequest Is a side where users can make daily plans where they go daily and to get people to join them for this trip</p>
+		</div>
 		<?php
 			}
 		?>
