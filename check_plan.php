@@ -95,6 +95,7 @@
 
 								while ($row2 = $fromRes->fetch(PDO::FETCH_ASSOC)) echo 'To: '.$row2['name'].'<br>';
 
+								echo '<a href="sign_plan.php?id='.$row['id'].'">Sign up</a>';
 
 								$fromRes = null;
 
