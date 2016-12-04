@@ -95,7 +95,9 @@
 
 								while ($row2 = $fromRes->fetch(PDO::FETCH_ASSOC)) echo 'To: '.$row2['name'].'<br>';
 
+
 								$fromRes = null;
+
 								echo '</div>';
 					 	 	}
 				 	 	}
