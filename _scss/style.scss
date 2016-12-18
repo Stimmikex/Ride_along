@@ -111,6 +111,8 @@ footer {
 }
 .profile-cover {
 	width: 100%;
+	background-position: center bottom;
+	border: solid black 1px;
 }
 .request_location, .offer_location, .day_drop {
 	width: 100%;
@@ -164,6 +166,15 @@ footer {
 }
 .ism-slider {
 	width: 100%;
+}
+.week_table {
+	display: flex;
+	flex-direction: row;
+}
+.schedule_ul {
+}
+.schedule {
+	border: solid black 1px;
 }
 
 
