@@ -31,32 +31,27 @@
 					$locationQuery = "SELECT name FROM location WHERE id = :location_id";
 					$locationRes = $db->prepare($locationQuery);
 
-					echo '<h4>'.$days[$i].'</h4>';
 					echo '<ul class="schedule_ul">';
+					echo '<h4>'.$days[$i].'</h4>';
 
 					while ($row = $scheduleRes->fetch(PDO::FETCH_ASSOC)) {
-						if (empty($row)) {
-							echo 'Nothing found ';
+						// echo '<h4>'.$days[$row['day']].'</h4>';
+						echo '<li class="schedule">Time: '.$row['leaving'].'<br>';
+						// echo $days[$day].", ".$row['leaving'].", ".$row['to_id'].", ".$row['from_id'].", ".$row['plan_id'];
+						$locationRes->bindParam(':location_id', $row['from_id']);
+						$locationRes->execute();
+						
+						while ($row2 = $locationRes->fetch(PDO::FETCH_ASSOC)) {
+							echo 'From: '.$row2['name'].'<br>';
 						}
-						else {
-							// echo '<h4>'.$days[$row['day']].'</h4>';
-							echo '<li class="schedule">Time: '.$row['leaving'].'<br>';
-							// echo $days[$day].", ".$row['leaving'].", ".$row['to_id'].", ".$row['from_id'].", ".$row['plan_id'];
-							$locationRes->bindParam(':location_id', $row['from_id']);
-							$locationRes->execute();
-							
-							while ($row2 = $locationRes->fetch(PDO::FETCH_ASSOC)) {
-								echo 'From: '.$row2['name'].'<br>';
-							}
-							
-							$locationRes->bindParam(':location_id', $row['to_id']);
-							$locationRes->execute();
+						
+						$locationRes->bindParam(':location_id', $row['to_id']);
+						$locationRes->execute();
 
-							while ($row2 = $locationRes->fetch(PDO::FETCH_ASSOC)) {
-								echo 'To: '.$row2['name'];
-							}
-							echo '</li>';
+						while ($row2 = $locationRes->fetch(PDO::FETCH_ASSOC)) {
+							echo 'To: '.$row2['name'].'<br>';
 						}
+						echo '</li>';
 					}
 
 					echo '</ul>';
