@@ -38,5 +38,5 @@ function geolocationTest(lat, long) {
 	var targetLong = -21.927823;
 	var dist = calculateDistanceKm(targetLat, targetLong, lat, long);
 
-	$('#geotest').html('Distance: ' + Math.round(dist * 1000) + 'm' + '; ' + (dist * 1000));
+	$('#geotest').html('Distance: ' + Math.round(dist * 1000) + 'm');
 }

@@ -2,7 +2,7 @@
   	$actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
   	$url = trim($actual_link, '/');
   	$page_name1 = substr($url, strrpos($url, '/')+1);
-	$page_name2 = substr($page_name1, count($page_name1)-1, -4); 
+	$page_name2 = substr($page_name1, count($page_name1)-1, -4);
 
 	include_once 'core/fb_config.php';
 	include_once 'core/functions.php';

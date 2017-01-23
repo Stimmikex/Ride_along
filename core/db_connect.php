@@ -1,11 +1,11 @@
 <?php
-	$dbuser = '2509972569';
+	$dbuser = 'root';
 	$dbpass = 'mypassword';
-	$dbhost = 'tsuts.tskoli.is';
-	$dbname = '2509972569_hopverkefni';
+	$dbhost = 'localhost';
+	$dbname = 'getaride';
 
 	try {
-		$db = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);
+		$db = new PDO("mysql:host=$dbhost;dbname=$dbname;charset=utf8", $dbuser, $dbpass);
 		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	} catch (Exception $e) {
 		echo "Connection failed! ".$e->getMessage();
