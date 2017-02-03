@@ -12,6 +12,18 @@
 			if ($logged === 'out') {
 				header('Location: index.php');
 			}
+		?>
+		<form action="" method="POST">
+			<input type="submit" name="mark_all_read" value="Mark all as read">
+		</form>
+		<?php
+			if (isset($_POST['mark_all_read'])) {
+				$markAllQuery = "UPDATE notifications SET seen=1 WHERE user_id=:user_id";
+				$markAllRes = $db->prepare($markAllQuery);
+				$markAllRes->bindParam(':user_id', $userID);
+				$markAllRes->execute();
+				$markAllQuery = $markAllRes = null;
+			}
 
 			$notificationQuery = "SELECT id, title, sent, seen FROM notifications WHERE user_id=:user_id ORDER BY id DESC";
 			$notificationRes = $db->prepare($notificationQuery);
