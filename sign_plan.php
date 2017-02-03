@@ -9,6 +9,9 @@
 	<body>
 		<?php require_once 'inc/header.php'; ?>
 		<?php
+			if ($logged === "out") {
+				header('Location: index.php');
+			}
 		 	$SelectQuery = "SELECT * FROM weekplanner WHERE id = :id";
 		 	$SelectRes = $db->prepare($SelectQuery);
 		 	$SelectRes->bindParam(':id', $_GET['id']);

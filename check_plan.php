@@ -13,6 +13,9 @@
 			<select name="day" class="request_location">
 				<option value="-1" disabled selected>Pick</option>
 				<?php
+					if ($logged === "out") {
+						header('Location: index.php');
+					}
 					for ($i=0; $i < 7; $i++) { 
 					 	echo '<option value="'.$i.'">'.$days[$i].'</option>';
 					 } 

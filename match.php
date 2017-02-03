@@ -10,6 +10,9 @@
 		<?php require_once 'inc/header.php'; ?>
 		
 		<?php
+			if ($logged === "out") {
+				header('Location: index.php');
+			}
 			$SelectQuery = "SELECT title, message, sent, from_user_id FROM notifications WHERE seen = 0 AND user_id = :user_id";
 			$SelectRes = $db->prepare($SelectQuery);
 			$SelectRes->bindParam(':user_id', $userID);

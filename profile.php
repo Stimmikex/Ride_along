@@ -32,24 +32,22 @@
 				$output = '<h3 style="color:red">Some problem occurred, please try again.</h3>';
 			}
 		?>
-		<div>
-		<?php
-			echo '<h1>Profile</h1>';
-			echo '<div class="profile_img_main">';
-				echo '<img src="'.$user_profile['cover']['source'].'" class="profile-cover">';
-				echo '<div class="profile_img_big"><img src="'.$fromPicture.'">';
-				echo '<p class="profile_name"><b>'.$user_data['fname'].' '.$user_data['lname'].'</b></p></div>';
-			echo '</div>';
-			echo $output; 
-		?>
-		</div>
-		<div>
+		<div class="pro_info">
+			<?php
+				echo '<h1>Profile</h1>';
+				echo '<div class="profile_img_main">';
+					// echo '<img src="'.$user_profile['cover']['source'].'" class="profile-cover">';
+					echo '<div class="profile_img_big"><img src="'.$fromPicture.'">';
+					echo '<p class="profile_name">'.$user_data['fname'].' '.$user_data['lname'].'</p></div>';
+				echo '</div>';
+				echo $output; 
+			?>
 			<p>Rating: </p>
 		</div>
-		<div>
-			<a href="notifications.php" class="pro_note"><img src="img/icons/notification.png" width="14px", height="14px">Notifications</a><br>
-			<a href="delete_plan.php" class="pro_del"><img src="img/icons/delete.png"width="14px", height="14px">Delete Plans</a><br>
-			<a href="schedule.php" class="pro_sch"><img src="img/icons/schedule.png"width="14px", height="14px">Schedule</a>
+		<div class="pro_icons">
+			<a href="notifications.php" class="pro_note"><img src="img/icons/notification.png">Notifications</a>
+			<a href="delete_plan.php" class="pro_del"><img src="img/icons/delete.png">Delete Plans</a>
+			<a href="schedule.php" class="pro_sch"><img src="img/icons/schedule.png">Schedule</a>
 		</div>
 		<?php
 			} else {

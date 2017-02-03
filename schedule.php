@@ -10,6 +10,9 @@
 		<?php require_once 'inc/header.php'; ?>
 		<div class="week_table">
 			<?php
+				if ($logged === "out") {
+					header('Location: index.php');
+				}
 				$day = date("N") - 1;
 
 				for ($i=0; $i < count($days); $i++) { 

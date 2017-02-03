@@ -9,6 +9,9 @@
 	<body>
 		<?php require_once 'inc/header.php'; ?>
 		<?php
+			if ($logged === "out") {
+				header('Location: index.php');
+			}
 			$day = date("N") - 1;
 
 			if (!isset($_GET['id'])) {
