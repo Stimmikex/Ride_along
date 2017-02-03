@@ -109,14 +109,23 @@ footer {
 		display: block;
 	}
 }
-.profile-cover {
-	width: 100%;
-	background-position: center bottom;
-	border: solid black 1px;
-}
+// .profile-cover {
+// 	width: 100%;
+// 	background-position: center bottom;
+// 	border: solid black 1px;
+// }
 .pro_note, .pro_del, .pro_sch {
+	display: block;
+	margin: 0.25em 0;
+	img {
+		width: 30px;
+		height: 30px;
+	}
 	text-decoration: none;
 	color: blue;
+}
+.pro_icons {
+	margin: 0.5em 0;
 }
 .request_location, .offer_location, .day_drop {
 	width: 100%;
@@ -192,34 +201,26 @@ footer {
 	background-color: white;
 }
 .profile_img_big {
+	height: 100%;
 	display: block;
-	margin: auto;
-	z-index: 1;
-	position: absolute;
-    top: 15%;
-    left: 30%;
-    width: 40%;
-    border-radius: 250px;
-    border: solid;
+	margin: 0;
+    width: 10em;
     img {
+    	border: solid;
     	border-radius: 250px;
 	    width: 100%;
 	    height: 100%;
     }
 }
-.profile_cover {
-	z-index: -1;
-}
+// .profile_cover {
+// 	z-index: -1;
+// }
 .profile_name {
-	width: 100%;
+	font-weight: bold;
     height: 100%;
 	display: block;
 	margin: auto;
-	z-index: 1;
-	position: absolute;
-    top: 100%;
-    left: 4%;
-    max-width: 90%;
+    max-width: 100%;
     text-align: center;
 }
 .profile_img_main {
@@ -239,6 +240,9 @@ footer {
 	.schedule_ul {
 		width: 90%;
 	}
+	.pro_sch, .pro_del, .pro_note {
+		display: inline-block;
+	}
 }
 @media screen and (min-width: 86em) {
 	.schedule_ul {
@@ -250,7 +254,7 @@ footer {
 		width: 46%;
 	}
 	.profile_name {
-		font-size: 2em;
+		font-size: 1.25em;
 	}
 }
 @media screen and (min-width: 119.375em) {
