@@ -45,6 +45,7 @@
 			<p>Rating: </p>
 		</div>
 		<div class="pro_icons">
+			<a href="notifications.php" class="pro_note"><img src="img/icons/notification.png">Notifications <span class="notification_count"></span></a>
 			<a href="delete_plan.php" class="pro_del"><img src="img/icons/delete.png">Delete Plans</a>
 			<a href="schedule.php" class="pro_sch"><img src="img/icons/schedule.png">Schedule</a>
 		</div>
