@@ -40,6 +40,11 @@
 		$user = new Users($db);
 		$user_data = $user->checkUser('facebook',$user_profile['id'],$user_profile['first_name'],$user_profile['last_name'],$user_profile['email'],$user_profile['gender'],$user_profile['locale'],$user_profile['picture']['data']['url']);
 	}
+
+	if($_SERVER['HTTPS'] !== 'on') {
+		header('Location: https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+		exit();
+	}
 ?>
 <header>
   <nav class="wrapper">
