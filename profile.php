@@ -44,10 +44,16 @@
 			?>
 			<p>Rating: </p>
 		</div>
+		<h2>Get a Ride Controlls</h2>
 		<div class="pro_icons">
 			<a href="notifications.php" class="pro_note"><img src="img/icons/notification.png">Notifications <span class="notification_count"></span></a>
 			<a href="delete_plan.php" class="pro_del"><img src="img/icons/delete.png">Delete Plans</a>
 			<a href="schedule.php" class="pro_sch"><img src="img/icons/schedule.png">Schedule</a>
+		</div>
+		<h2>Carpooling Info</h2>
+		<div class="pro_icons">
+			<a href="#" class="pro_driver"><img src="img/icons/driver_icon.png">Driver Info</a>
+			<a href="#" class="pro_pass"><img src="img/icons/passanger_icon.png">Passanger Info</a>
 		</div>
 		<?php
 			} else {

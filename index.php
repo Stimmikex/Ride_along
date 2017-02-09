@@ -14,11 +14,17 @@
 		}
 			if ($logged === 'in') {
 		?>
+		<h2>Get a Ride</h2>
 		<ul class="index_ul">
 			<li><a href="offer.php">Offer a ride</a></li>
 			<li><a href="request.php">Request a ride</a></li>
 			<li><a href="planner.php">Dayplan</a></li>
 			<li><a href="check_plan.php">Check for plans</a></li>
+		</ul>
+		<h2>Carpooling</h2>
+		<ul class="index_ul">
+			<li><a href="#">Ask ride</a></li>
+			<li><a href="#">Add ride</a></li>
 		</ul>
 		<?php
 			} else {

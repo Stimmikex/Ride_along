@@ -1,4 +1,4 @@
-.pro_note, .pro_del, .pro_sch {
+.pro_note, .pro_del, .pro_sch, .pro_driver, .pro_pass{
 	display: block;
 	margin: 0.25em 0;
 	img {
@@ -39,7 +39,7 @@
 	display: inline-block;
 }
 @media screen and (min-width: 48em) {
-	.pro_sch, .pro_del, .pro_note {
+	.pro_sch, .pro_del, .pro_note, .pro_driver, .pro_pass{
 		display: inline-block;
 	}
 	.profile_img_big {
