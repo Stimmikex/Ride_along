@@ -25,6 +25,7 @@
 		<ul class="index_ul">
 			<li><a href="#">Ask ride</a></li>
 			<li><a href="#">Add ride</a></li>
+			<li><a href="#">Search</a></li>
 		</ul>
 		<?php
 			} else {
