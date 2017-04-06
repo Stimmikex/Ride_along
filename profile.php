@@ -9,25 +9,19 @@
 	<body>
 		<?php require_once 'inc/header.php'; ?>
 		<?php
-			$userQuery = "SELECT fname, lname, oauth_uid FROM users WHERE id=:uid LIMIT 1";
+			$output = null;
+
+			/*$userQuery = "SELECT fname, lname, oauth_uid FROM users WHERE id=:uid LIMIT 1";
 			$userRes = $db->prepare($userQuery);
-			$userRes->bindParam(':uid', $userID);
+			$userRes->bindParam(':uid', $_SESSION['user_id']);
 			$userRes->execute();
 
 			while ($row = $userRes->fetch(PDO::FETCH_ASSOC)) {
 				$fromPicture = 'http://graph.facebook.com/'.$row['oauth_uid'].'/picture?width=300';
-			}
+			}*/
 			if ($logged === 'in') {
-			$user_profile = $facebook->api('/me?fields=id,first_name,last_name,email,gender,locale,picture,cover');
-			$user = new Users($db);
-			$user_data = $user->checkUser('facebook',$user_profile['id'],$user_profile['first_name'],$user_profile['last_name'],$user_profile['email'],$user_profile['gender'],$user_profile['locale'],$user_profile['picture']['data']['url']);
-			if(!empty($user_data)){
-				// $output = '<img src="'.$user_profile['cover']['source'].'" class="profile-cover">';
-				$output = '<p>Name : ' . $user_data['fname'].' '.$user_data['lname'].'</p>';
-				$output .= '<p>Email : ' . $user_data['email'].'</p>';
-				// $output .= '<br/>Gender : ' . $user_data['gender'];
-				// $output .= '<br/>Locale : ' . $user_data['locale'];
-				// $output .= '<p>You are logged in with: Facebook</p>';
+				$output = '<p>Name: ' . $user_data['fname'].' '.$user_data['lname'].'</p>';
+				$output .= '<p>Email: ' . $user_data['email'].'</p>';
 			}else{
 				$output = '<h3 style="color:red">Some problem occurred, please try again.</h3>';
 			}
@@ -36,11 +30,10 @@
 			<?php
 				echo '<h1>Profile</h1>';
 				echo '<div class="profile_img_main">';
-					// echo '<img src="'.$user_profile['cover']['source'].'" class="profile-cover">';
-					echo '<div class="profile_img_big"><img src="'.$fromPicture.'">';
+					echo '<div class="profile_img_big"><img src="'.$user_data['picture'].'">';
 					echo '<p class="profile_name">'.$user_data['fname'].' '.$user_data['lname'].'</p></div>';
 				echo '</div>';
-				echo $output; 
+				echo $output;
 			?>
 			<p>Rating: </p>
 		</div>

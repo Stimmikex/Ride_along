@@ -4,12 +4,9 @@
   	$page_name1 = substr($url, strrpos($url, '/')+1);
 	$page_name2 = substr($page_name1, count($page_name1)-1, -4);
 
-	include_once 'core/fb_config.php';
-	include_once 'core/functions.php';
+	//include_once 'core/fb_config.php';
 
-	$logged = null;
-
-	if ($fbuser) {
+	/*if ($fbuser) {
 		$logged = 'in';
 
 		$oauth_uid = $_SESSION['fb_238722499878103_user_id'];
@@ -29,9 +26,9 @@
 		echo '<div style="display:none;" id="user_id_div">'.$userID.'</div>';
 	} else {
 		$logged = 'out';
-	}
+	}*/
 
-	if(!$fbuser){
+	/*if(!$fbuser){
 		$fbuser = null;
 		$loginUrl = $facebook->getLoginUrl(array('redirect_uri'=>$homeurl,'scope'=>$fbPermissions));
 		$output = '<a href="'.$loginUrl.'"><img src="img/fb_login.png"></a>';
@@ -40,6 +37,35 @@
 		$user = new Users($db);
 		$user_data = $user->checkUser('facebook',$user_profile['id'],$user_profile['first_name'],$user_profile['last_name'],$user_profile['email'],$user_profile['gender'],$user_profile['locale'],$user_profile['picture']['data']['url']);
 	}
+
+	$helper = $facebook->getRedirectLoginHelper();
+
+	try {
+		$accessToken = $helper->getAccessToken();
+	} catch(Facebook\Exceptions\FacebookResponseException $e) {
+		// When Graph returns an error
+		echo 'Graph returned an error: ' . $e->getMessage();
+		exit;
+	} catch(Facebook\Exceptions\FacebookSDKException $e) {
+		// When validation fails or other local issues
+		echo 'Facebook SDK returned an error: ' . $e->getMessage();
+		exit;
+	}
+
+	if (! isset($accessToken)) {
+		if ($helper->getError()) {
+	  		header('HTTP/1.0 401 Unauthorized');
+	    	echo "Error: " . $helper->getError() . "\n";
+	    	echo "Error Code: " . $helper->getErrorCode() . "\n";
+	    	echo "Error Reason: " . $helper->getErrorReason() . "\n";
+	    	echo "Error Description: " . $helper->getErrorDescription() . "\n";
+	  	} 
+	  	else {
+	    	header('HTTP/1.0 400 Bad Request');
+	    	echo 'Bad request';
+	  	}
+	  	exit;
+	}*/
 
 	if($_SERVER['HTTPS'] !== 'on') {
 		header('Location: https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);

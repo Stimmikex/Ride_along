@@ -9,9 +9,10 @@
 	<body>
 		<?php require_once 'inc/header.php'; ?>
 		<?php
-		if (isset($_GET['code'])) {
-			header('location: index.php');
-		}
+			if (isset($_GET['code'])) {
+				header('location: index.php');
+			}
+			
 			if ($logged === 'in') {
 		?>
 		<h2>Get a Ride</h2>
