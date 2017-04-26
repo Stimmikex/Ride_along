@@ -27,3 +27,5 @@ Route::get('/logout', 'Auth\AuthController@logout');
 
 Route::get('/redirect', 'SocialAuthController@redirect');
 Route::get('/callback', 'SocialAuthController@callback');
+
+Route::get('/profile', '');
