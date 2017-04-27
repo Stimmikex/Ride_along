@@ -44,7 +44,7 @@
     ?>
     <header>
       <nav class="wrapper">
-        <div class="logo"><a href="index.php" class="home-button"><img src="img/icons/carpool.png"></a></div><!-- Logo -->
+        <div class="logo"><a href="{{ url('/home') }}" class="home-button"><img src="{{ config('paths.icons') }}carpool.png"></a></div><!-- Logo -->
         <input type="checkbox" id="menu-toggle">
           <label for="menu-toggle" class="label-toggle"></label>
         </input>
