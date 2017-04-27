@@ -10,22 +10,9 @@
 	while ($row = $userRes->fetch(PDO::FETCH_ASSOC)) {
 		$fromPicture = 'http://graph.facebook.com/'.$row['oauth_uid'].'/picture?width=300';
 	}*/
-	if ($logged === 'in') {
-		$output = '<p>Name: ' . $user_data['fname'].' '.$user_data['lname'].'</p>';
-		$output .= '<p>Email: ' . $user_data['email'].'</p>';
-	}else{
-		$output = '<h3 style="color:red">Some problem occurred, please try again.</h3>';
-	}
 ?>
 <div class="pro_info">
-	<?php
-		echo '<h1>Profile</h1>';
-		echo '<div class="profile_img_main">';
-			echo '<div class="profile_img_big"><img src="'.$user_data['picture'].'">';
-			echo '<p class="profile_name">'.$user_data['fname'].' '.$user_data['lname'].'</p></div>';
-		echo '</div>';
-		echo $output;
-	?>
+	{{ $output }}
 	<p>Rating: </p>
 </div>
 <h2>Get a Ride Controlls</h2>
@@ -39,9 +26,4 @@
 	<a href="#" class="pro_driver"><img src="img/icons/driver_icon.png">Driver Info</a>
 	<a href="#" class="pro_pass"><img src="img/icons/passanger_icon.png">Passanger Info</a>
 </div>
-<?php
-	} else {
-		header('Location: index.php');
-	}
-?>
 @endsection
