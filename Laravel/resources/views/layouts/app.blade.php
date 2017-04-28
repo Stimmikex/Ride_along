@@ -50,11 +50,11 @@
         </input>
         <ul>
             <li><a href="{{ url('/home') }}">Home</a></li>
-            <li><a href="about.php">About us</a></li>
+            <li><a href="{{ url('/about') }}">About us</a></li>
             @if (Auth::guest())
                 <li><a href="{{ url('/login') }}">Login</a></li>
             @else
-                <li><a href="profile.php">Profile <span class="notification_count"></span></a></li>
+                <li><a href="{{ url('/profile')}}">Profile <span class="notification_count"></span></a></li>
                 <li><a href="{{ url('/logout') }}">Logout</a></li>
             @endif
         </ul>

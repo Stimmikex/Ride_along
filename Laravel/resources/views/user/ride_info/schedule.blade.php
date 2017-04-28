@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+@extends('layouts.app')
+>>>>>>> origin/master
 @section('content')
 <div class="week_table">
 	<?php
