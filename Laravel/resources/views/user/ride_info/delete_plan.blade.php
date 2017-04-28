@@ -1,12 +1,6 @@
-<<<<<<< HEAD
-@section('content')
-<?php
-=======
 @extends('layouts.app')
 @section('content')
 @php
->>>>>>> origin/master
-
 	$scheduleQuery = "SELECT id,
 								plan_name
 							FROM planner
@@ -26,19 +20,9 @@
 			echo '<h4>'.$row['plan_name'].'</h4>';
 			echo '<a href="info_plan.php?id='.$row['id'].'">Info</a>';
 			echo '<li><form method="post">';
-<<<<<<< HEAD
-			?>
-			  	<!--<button type='submit' name='delete' value=".$row['plan_id']." class='delete_planner'>Delete</button>-->
-				<input type="submit" name="delete_<?php echo $row['id']; ?>" value="Delete" class="delete_planner">
-
-			<?php
-=======
 			@endphp
-			  	<!--<button type='submit' name='delete' value=".$row['plan_id']." class='delete_planner'>Delete</button>-->
-				<input type="submit" name="delete_<?php echo $row['id']; ?>" value="Delete" class="delete_planner">
-
+				<input type="submit" name="delete_<?php echo $row['id']; ?>" value="Delete" class="delete_planner"
 			@php
->>>>>>> origin/master
 				@if (isset($_POST['delete_'.$row['id']]))
 					echo "true";
 					$deleteQuery = "DELETE FROM weekplanner WHERE plan_id = :plan_id";
@@ -60,9 +44,5 @@
 		}
 		echo '</ul>';
 	@endif
-<<<<<<< HEAD
-?>
-=======
 @endphp
->>>>>>> origin/master
 @endsection
