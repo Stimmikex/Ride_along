@@ -2,8 +2,8 @@
 @section('content')
 <div class="week_table">
 	<?php
-		if ($logged === "out") {
-			header('Location: index.php');
+		if (Auth::guest()) {
+			Redirect::to('/home');
 		}
 		$day = date("N") - 1;
 

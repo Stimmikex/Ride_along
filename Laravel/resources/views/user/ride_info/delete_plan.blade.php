@@ -1,6 +1,9 @@
 @extends('layouts.app')
 @section('content')
 @php
+	if (Auth::guest()) {
+		Redirect::to('/home');
+	}
 	$scheduleQuery = "SELECT id,
 								plan_name
 							FROM planner

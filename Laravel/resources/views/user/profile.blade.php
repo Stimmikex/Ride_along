@@ -1,16 +1,5 @@
 @extends('layouts.app')
 @section('content')
-<?php
-
-	/*$userQuery = "SELECT fname, lname, oauth_uid FROM users WHERE id=:uid LIMIT 1";
-	$userRes = $db->prepare($userQuery);
-	$userRes->bindParam(':uid', $_SESSION['user_id']);
-	$userRes->execute();
-
-	while ($row = $userRes->fetch(PDO::FETCH_ASSOC)) {
-		$fromPicture = 'http://graph.facebook.com/'.$row['oauth_uid'].'/picture?width=300';
-	}*/
-?>
 <div>
 	<img src='{{ $user_img }}'>
 </div>

@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('content')
 <?php
-	if ($logged === 'out') {
-		header('Location: index.php');
+	if (Auth::guest()) {
+		Redirect::to('/home');
 	}
 	
 	if (!isset($_POST['check'])) {
