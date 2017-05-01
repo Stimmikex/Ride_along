@@ -39,4 +39,10 @@ class ProfileController extends Controller
 
 		return $fb_user_img;
 	}
+	public function get_plan() 
+	{
+		$dp_get_schedule = DB::table('planner')->select('id', 'plan_name')->where('user_id', $user_id['id'])->get();
+
+		return $dp_get_schedule;
+	}
 }

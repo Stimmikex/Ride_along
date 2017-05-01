@@ -21,4 +21,8 @@ class Controller extends BaseController
 			return true;
 		}
     }
+    public function location_check() {
+    	$dp_get_schedule = DB::table('planner')->select('id', 'plan_name')->where('user_id', $user_id['id'])->get();
+    	$location = DB::table('')->select('name')->where('')->get();
+    }
 }
