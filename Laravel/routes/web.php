@@ -15,6 +15,7 @@ Route::group(['prefix' => 'profile'], function() {
 	Route::get('schedule', function() { return view('/user/ride_info/schedule'); });
 	Route::get('driver_info', function() { return view('/user/ride_info/driver_info'); });
 	Route::get('passanger_info', function() { return view('/user/ride_info/passanger_info'); });
+	Route::get('chat', function() { return view('/user/chat'); });
 
 	Route::group(['prefix' => 'notifications'], function() {
 		Route::get('/', function() { return 'Notifications'; });
@@ -26,3 +27,5 @@ Route::group(['prefix' => 'tests'], function() {
 	Route::get('carquery', function() { return view('/tests/carquery'); });
 	Route::get('carapi', function() { return view('/tests/carapi'); });
 });
+
+Route::post('sendmessage', 'ChatController@sendMessage');

@@ -24,7 +24,7 @@
 			echo '<a href="info_plan.php?id='.$row['id'].'">Info</a>';
 			echo '<li><form method="post">';
 			@endphp
-				<input type="submit" name="delete_<?php echo $row['id']; ?>" value="Delete" class="delete_planner"
+				<input type="submit" name="delete_<?php echo $row['id']; ?>" value="Delete" class="delete_planner">
 			@php
 				@if (isset($_POST['delete_'.$row['id']]))
 					echo "true";
