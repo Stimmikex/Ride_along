@@ -13,3 +13,6 @@ Route::get('/redirect', 'SocialAuthController@redirect');
 Route::get('/callback', 'SocialAuthController@callback');
 Route::get('/profile', 'ProfileController@index');
 Route::get('/ride/planner', 'PlannerController@planner');
+
+Route::get('/tests/carquery', function() { return view('/tests/carquery'); });
+Route::get('/tests/carapi', function() { return view('/tests/carapi'); });

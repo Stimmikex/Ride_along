@@ -66,6 +66,7 @@
                 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
             <![endif]-->
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     @yield('content')
 
     </div>
@@ -133,19 +134,18 @@
             <p class="copyright-text">&copy; 2016 | Styrmir Óli Þorsteinsson and Bjarki Fannar Snorrason</p>
         </div>
     </footer>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="js/plugins.js"></script>
-    <script src="js/moment.js"></script>
+    <!-- <script src="js/moment.js"></script> -->
     <script src="js/geolocation.js"></script>
     <script src="js/google_maps.js"></script>
     <script src="js/notifications.js"></script>
     <script src="js/ism-2.2.min.js"></script>
     <script type="text/javascript">
-        function update() {
+        /*function update() {
             $('#dgi').html(moment().format('H:mm:ss'));
         }
 
-        setInterval(update, 1000);
+        setInterval(update, 1000);*/
     </script>
     <?php $db = null; ?>
     <!-- Scripts -->
