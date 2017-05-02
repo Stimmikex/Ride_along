@@ -5,11 +5,6 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
-
-                <div class="panel-body">
-                    You are logged in!
-                </div>
                 <h2>Get a Ride</h2>
                 <ul class="index_ul">
                     <li><a href="{{ url('/ride/offer_ride') }}">Offer a ride</a></li>
