@@ -12,7 +12,7 @@
 </div>
 <h2>Get a Ride Controlls</h2>
 <div class="pro_icons">
-	<a href="{{ url('profile/notification') }}" class="pro_note"><img src="{{ config('paths.icons') }}notification.png">Notifications <span class="notification_count"></span></a>
+	<a href="{{ url('profile/notifications') }}" class="pro_note"><img src="{{ config('paths.icons') }}notification.png">Notifications <span class="notification_count"></span></a>
 	<a href="{{ url('profile/delete_plan') }}" class="pro_del"><img src="{{ config('paths.icons') }}delete.png">Delete Plans</a>
 	<a href="{{ url('profile/schedule') }}" class="pro_sch"><img src="{{ config('paths.icons') }}schedule.png">Schedule</a>
 </div>

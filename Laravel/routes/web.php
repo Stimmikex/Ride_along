@@ -15,6 +15,11 @@ Route::group(['prefix' => 'profile'], function() {
 	Route::get('schedule', function() { return view('/user/ride_info/schedule'); });
 	Route::get('driver_info', function() { return view('/user/ride_info/driver_info'); });
 	Route::get('passanger_info', function() { return view('/user/ride_info/passanger_info'); });
+
+	Route::group(['prefix' => 'notifications'], function() {
+		Route::get('/', function() { return 'Notifications'; });
+		Route::get('/{nid}', function($nid) { return 'Notifications, nid: '.$nid; });
+	});
 });
 
 Route::group(['prefix' => 'tests'], function() {
