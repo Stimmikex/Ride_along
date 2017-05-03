@@ -15,6 +15,7 @@ Route::group(['prefix' => 'profile'], function() {
 	Route::get('schedule', function() { return view('/user/ride_info/schedule'); });
 	Route::get('driver_info', function() { return view('/user/ride_info/driver_info'); });
 	Route::get('passanger_info', function() { return view('/user/ride_info/passanger_info'); });
+	Route::get('plan_info/{pid}', 'PlannerController@plan_info');
 	Route::get('chat', function() { return view('/user/chat'); });
 
 	Route::group(['prefix' => 'notifications'], function() {
