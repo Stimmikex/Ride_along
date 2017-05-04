@@ -134,12 +134,12 @@
             <p class="copyright-text">&copy; 2016 | Styrmir Óli Þorsteinsson and Bjarki Fannar Snorrason</p>
         </div>
     </footer>
-    <script src="js/plugins.js"></script>
-    <!-- <script src="js/moment.js"></script> -->
+    <!-- <script src="js/plugins.js"></script>
+    <script src="js/moment.js"></script> 
     <script src="js/geolocation.js"></script>
     <script src="js/google_maps.js"></script>
     <script src="js/notifications.js"></script>
-    <script src="js/ism-2.2.min.js"></script>
+    <script src="js/ism-2.2.min.js"></script> -->
     <script type="text/javascript">
         /*function update() {
             $('#dgi').html(moment().format('H:mm:ss'));
@@ -147,7 +147,6 @@
 
         setInterval(update, 1000);*/
     </script>
-    <?php $db = null; ?>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
 </body>

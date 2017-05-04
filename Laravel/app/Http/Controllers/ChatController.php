@@ -9,7 +9,7 @@ use LRedis;
 class ChatController extends Controller {
 	public function __construct()
 	{
-		$this->middleware('guest');
+		$this->logincheck();
 	}
 
 	public function sendMessage() {
