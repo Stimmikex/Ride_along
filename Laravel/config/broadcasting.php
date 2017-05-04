@@ -36,7 +36,8 @@ return [
             'secret' => env('PUSHER_APP_SECRET'),
             'app_id' => env('PUSHER_APP_ID'),
             'options' => [
-                //
+                'host' => '138.68.181.216',
+                'port' => 6001,
             ],
         ],
 

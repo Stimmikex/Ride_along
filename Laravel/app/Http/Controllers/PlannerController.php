@@ -37,6 +37,10 @@ class PlannerController extends Controller {
 	public function passanger_info() {
 		return view('user.ride_info.passanger_info');
 	}
+
+	public function plan_info($pid) {
+		return view('user.ride_info.plan_info');
+	}
 }
 
 // if (isset($_POST['submit'])) {
