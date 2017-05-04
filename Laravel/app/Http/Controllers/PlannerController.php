@@ -9,6 +9,7 @@ class PlannerController extends Controller {
 	public function __construct() {
 		$this->logincheck();
 	}
+
 	public function planner() {
 		$submitted = false;
 		$locations = DB::table('location')->select('id','lat','lng')->get();
@@ -19,6 +20,22 @@ class PlannerController extends Controller {
 		}
 
 		return view('ride.planner', compact('locations', 'submitted'));
+	}
+
+	public function delete_plan() {
+		return view('user.ride_info.delete_plan');
+	}
+
+	public function schedule() {
+		return view('user.ride_info.schedule');
+	}
+
+	public function driver_info() {
+		return view('user.ride_info.driver_info');
+	}
+
+	public function passanger_info() {
+		return view('user.ride_info.passanger_info');
 	}
 }
 

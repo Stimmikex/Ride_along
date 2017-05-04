@@ -2,7 +2,7 @@
 Auth::routes();
 
 Route::get('/', 'HomeController@index');
-Route::get('/about', function() { return view('about'); });
+Route::get('/about', 'HomeController@about');
 Route::get('/home', 'HomeController@index');
 Route::get('/logout', 'SocialAuthController@logout');
 Route::get('/redirect', 'SocialAuthController@redirect');
@@ -11,16 +11,16 @@ Route::get('/ride/planner', 'PlannerController@planner');
 
 Route::group(['prefix' => 'profile'], function() {
 	Route::get('/', 'ProfileController@index');
-	Route::get('delete_plan', function() { return view('/user/ride_info/delete_plan'); });
-	Route::get('schedule', function() { return view('/user/ride_info/schedule'); });
-	Route::get('driver_info', function() { return view('/user/ride_info/driver_info'); });
-	Route::get('passanger_info', function() { return view('/user/ride_info/passanger_info'); });
+	Route::get('delete_plan', 'PlannerController@delete_plan');
+	Route::get('schedule', 'PlannerController@schedule');
+	Route::get('driver_info', 'PlannerController@driver_info');
+	Route::get('passanger_info', 'PlannerController@passanger_info');
 	Route::get('plan_info/{pid}', 'PlannerController@plan_info');
-	Route::get('chat', function() { return view('/user/chat'); });
+	Route::get('chat', 'ChatController@chat');
 
 	Route::group(['prefix' => 'notifications'], function() {
-		Route::get('/', function() { return 'Notifications'; });
-		Route::get('/{nid}', function($nid) { return 'Notifications, nid: '.$nid; });
+		Route::get('/', 'NotificationController@notification_list');
+		Route::get('/{nid}', 'NotificationController@show_notification');
 	});
 });
 
