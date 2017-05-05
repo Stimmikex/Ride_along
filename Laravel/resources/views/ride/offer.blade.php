@@ -1,39 +1,29 @@
 @extends('layouts.app')
 @section('content')
+
+@if($submitted)
+	<h3>{{ $output }}</h3>
+@else
+	<form action="/ride/offer_ride/submit" method="POST" accept-charset="UTF-8">
+		<label>Nearest Location</label>
+		<select name="from" class="offer_location">
+			<option value="-1" disabled selected>Pick</option>
+			@for($i = 0; $i < count($locations); $i++)
+				<option value="{{ $locations[$i]->id }}">{{ $locations[$i]->location_name }}</option>
+			@endfor
+		</select>
+		<label>Location of dropoff</label>
+		<select name="to" class="offer_location">
+			<option value="-1" disabled selected>Pick</option>
+			@for($i = 0; $i < count($locations); $i++)
+				<option value="{{ $locations[$i]->id }}">{{ $locations[$i]->location_name }}</option>
+			@endfor
+		</select>
+		<input type="submit" name="check" value="Check" class="offer_submit">
+	</form>
+@endif
 <?php
-	if (!isset($_POST['check'])) {
-?>
-<form action="" method="POST" accept-charset="UTF-8">
-	<label>Nearest Location</label>
-	<select name="from" class="offer_location">
-		<option value="-1" disabled selected>Pick</option>
-		<?php
-			// $query = "SELECT id, name FROM location ORDER BY name ASC";
-			// $res = $db->prepare($query);
-			// $res->execute();
-
-			// while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
-			// 	echo '<option value="'.$row['id'].'">'.$row['name'].'</option>';
-			// }
-		?>
-	</select>
-	<label>Location of dropoff</label>
-	<select name="to" class="offer_location">
-		<option value="-1" disabled selected>Pick</option>
-		<?php
-			// $res->execute();
-
-			// while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
-			// 	echo '<option value="'.$row['id'].'">'.$row['name'].'</option>';
-			// }
-
-			// $res = null;
-		?>
-	</select>
-	<input type="submit" name="check" value="Check" class="offer_submit">
-</form>
-<?php
-	} else {
+	// } else {
 		// if (isset($_POST['to'], $_POST['from'])) {
 		// 	$toID = $_POST['to'];
 		// 	$fromID = $_POST['from'];
@@ -75,7 +65,7 @@
 
 		// 	$checkQuery = $checkRes = null;
 		// }
-	}
+	// }
 ?>
 <script type="text/javascript">
 	$(function() {

@@ -25,6 +25,8 @@ class Controller extends BaseController
 	public function getUserID() {
 		if($this->logincheck())
 			return Auth::getUser()['attributes']['id'];
+
+		return null;
 	}
 
 	public function location_check() {
