@@ -2,6 +2,8 @@
 
 ## NOTICE: The latest version of this project is in the Laravel folder in this repository!
 
+## NOTICE: More info on the Wiki!
+
 ### Síða: http://138.68.181.216/
 ### GitHub repo (Database): https://github.com/bjarkifannar/RideAlongDB
 
