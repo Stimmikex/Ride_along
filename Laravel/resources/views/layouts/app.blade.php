@@ -1,3 +1,7 @@
+@php
+    use App\Http\Controllers\ProfileController;
+@endphp
+
 <!DOCTYPE html>
 <html lang="{{ config('app.locale') }}">
 <head>
@@ -41,6 +45,10 @@
         //     header('Location: https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
         //     exit();
         // }
+        if(!Auth::guest()) {
+            $user_id = Auth::getUser()['attributes']['id'];
+            $user_img = ProfileController::get_profile_img($user_id);
+        }
     ?>
     <header>
       <nav class="wrapper">
@@ -54,7 +62,7 @@
             @if (Auth::guest())
                 <li><a href="{{ url('/login') }}">Login</a></li>
             @else
-                <li><a href="{{ url('/profile')}}">Profile <span class="notification_count"></span></a></li>
+                <li><a href="{{ url('/profile')}}"><img src="{{ $user_img }}" class="header_img"> Profile <span class="notification_count"></span></a></li>
                 <li><a href="{{ url('/logout') }}">Logout</a></li>
             @endif
         </ul>
@@ -79,7 +87,34 @@
             <div class="col-1-2 flex-container footer-padding">
                 <div class="col-1-2">
                     <?php
-                        // $day = date("N") - 1;
+                        if(!Auth::guest()) {
+
+                            $day = date("N") - 1;
+                            $scheduleRes = DB::select("CALL get_dayplan($user_id, $day)");
+
+                            echo '<ul class="footer_planner_ul">';
+                            echo '<h4>'.$days[$day].'</h4>';
+                            echo "<hr>";
+
+                            if (empty($scheduleRes)) {
+                                echo "Nothing on this day.";
+                            }
+                            else {
+                                echo '<pre>';
+                                for ($j = 0; $j < count($scheduleRes); $j++) {
+                                    echo $scheduleRes[$j]->leaving. "<br>";
+                                    $location_toRes = DB::table('location')->select('location_name')->where('id', $scheduleRes[$j]->to_id)->get();
+                                    $location_fromRes = DB::table('location')->select('location_name')->where('id', $scheduleRes[$j]->from_id)->get();
+
+                                    echo "To: ".$location_toRes[0]->location_name."<br>";
+                                    echo "From: ".$location_fromRes[0]->location_name."<br>";
+                                    echo "<hr>";
+                                }
+                                echo '</pre>';
+                            }
+                            echo '</ul>';
+
+                        }
 
 
                         // $scheduleQuery = "SELECT weekplanner.day AS day, 

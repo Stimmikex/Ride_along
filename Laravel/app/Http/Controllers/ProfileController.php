@@ -18,7 +18,7 @@ class ProfileController extends Controller
 			$output[] = 'Name: '.$user['name'];
 			$output[] = 'Email: '.$user['email'];
 
-			$user_img = $this->get_profile_img($user);
+			$user_img = $this->get_profile_img($user['id']);
 		}
 		else
 		{
@@ -27,14 +27,14 @@ class ProfileController extends Controller
 
 		return view('user.profile', compact('output', 'user_img'));
 	}
-	public function get_profile_img($user)
+	public static function get_profile_img($user)
 	{
-		$fb_user_id = DB::table('social_accounts')->select('provider_user_id')->where('user_id', $user['id'])->get();
-		$fb_check = DB::table('social_accounts')->select('provider')->where('user_id', $user['id'])->get();
+		$fb_user_img = null;
+		$fb_check = DB::table('social_accounts')->select('provider')->where('user_id', $user)->get();
 		
 		if ($fb_check = 'facebook') {
-			$fb_user_id = $fb_user_id->toArray();
-			$fb_user_img = 'http://graph.facebook.com/'.$fb_user_id[0]->provider_user_id.'/picture?width=300';
+			$fb_user_img = DB::table('social_accounts')->select('user_img')->where('user_id', $user)->get();
+			$fb_user_img = $fb_user_img->toArray()[0]->user_img;
 		}
 
 		return $fb_user_img;
