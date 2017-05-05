@@ -1,10 +1,6 @@
 @extends('layouts.app')
 @section('content')
 <?php
-	if (Auth::guest()) {
-		Redirect::to('/home');
-	}
-	
 	if (!isset($_POST['check'])) {
 ?>
 <form action="" method="POST" accept-charset="UTF-8">
@@ -12,76 +8,75 @@
 	<select name="from" class="offer_location">
 		<option value="-1" disabled selected>Pick</option>
 		<?php
-			$query = "SELECT id, name FROM location ORDER BY name ASC";
-			$res = $db->prepare($query);
-			$res->execute();
+			// $query = "SELECT id, name FROM location ORDER BY name ASC";
+			// $res = $db->prepare($query);
+			// $res->execute();
 
-			while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
-				echo '<option value="'.$row['id'].'">'.$row['name'].'</option>';
-			}
+			// while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
+			// 	echo '<option value="'.$row['id'].'">'.$row['name'].'</option>';
+			// }
 		?>
 	</select>
 	<label>Location of dropoff</label>
 	<select name="to" class="offer_location">
 		<option value="-1" disabled selected>Pick</option>
 		<?php
-			$res->execute();
+			// $res->execute();
 
-			while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
-				echo '<option value="'.$row['id'].'">'.$row['name'].'</option>';
-			}
+			// while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
+			// 	echo '<option value="'.$row['id'].'">'.$row['name'].'</option>';
+			// }
 
-			$res = null;
+			// $res = null;
 		?>
 	</select>
 	<input type="submit" name="check" value="Check" class="offer_submit">
 </form>
 <?php
 	} else {
-		if (isset($_POST['to'], $_POST['from'])) {
-			$toID = $_POST['to'];
-			$fromID = $_POST['from'];
+		// if (isset($_POST['to'], $_POST['from'])) {
+		// 	$toID = $_POST['to'];
+		// 	$fromID = $_POST['from'];
 
-			$checkQuery = "SELECT request.message AS request_message,
-									request.time_stamp AS request_time,
-									users.id AS user_id,
-									users.fname AS user_name,
-									users.picture AS user_picture
-										FROM request
-									INNER JOIN users
-										ON request.user_id=users.id
-									WHERE request.to_id=:to_id
-									AND request.from_id=:from_id
-									AND request.available=1
-										ORDER BY request.id ASC";
-			$checkRes = $db->prepare($checkQuery);
-			$checkRes->bindParam(':to_id', $toID);
-			$checkRes->bindParam(':from_id', $fromID);
-			$checkRes->execute();
+		// 	$checkQuery = "SELECT request.message AS request_message,
+		// 							request.time_stamp AS request_time,
+		// 							users.id AS user_id,
+		// 							users.fname AS user_name,
+		// 							users.picture AS user_picture
+		// 								FROM request
+		// 							INNER JOIN users
+		// 								ON request.user_id=users.id
+		// 							WHERE request.to_id=:to_id
+		// 							AND request.from_id=:from_id
+		// 							AND request.available=1
+		// 								ORDER BY request.id ASC";
+		// 	$checkRes = $db->prepare($checkQuery);
+		// 	$checkRes->bindParam(':to_id', $toID);
+		// 	$checkRes->bindParam(':from_id', $fromID);
+		// 	$checkRes->execute();
 
-			if ($checkRes->rowCount() > 0) {
-				$counter = 0;
+		// 	if ($checkRes->rowCount() > 0) {
+		// 		$counter = 0;
 
-				echo '<div style="display:none;" id="data"><span id="datalength">'.$checkRes->rowCount().'</span>';
+		// 		echo '<div style="display:none;" id="data"><span id="datalength">'.$checkRes->rowCount().'</span>';
 
-				while ($row = $checkRes->fetch(PDO::FETCH_ASSOC)) {
-					echo '<span id="data'.$counter.'">'.$row['user_id'].';'.$row['user_name'].';'.$row['user_picture'].';'.$row['request_time'].';'.$row['request_message'].'</span>';
+		// 		while ($row = $checkRes->fetch(PDO::FETCH_ASSOC)) {
+		// 			echo '<span id="data'.$counter.'">'.$row['user_id'].';'.$row['user_name'].';'.$row['user_picture'].';'.$row['request_time'].';'.$row['request_message'].'</span>';
 
-					$counter++;
-				}
+		// 			$counter++;
+		// 		}
 
-				echo '</div>';
+		// 		echo '</div>';
 
-				echo '<div class="user_info"></div>';
-			} else {
-				echo '<h3>No requests found.</h3>';
-			}
+		// 		echo '<div class="user_info"></div>';
+		// 	} else {
+		// 		echo '<h3>No requests found.</h3>';
+		// 	}
 
-			$checkQuery = $checkRes = null;
-		}
+		// 	$checkQuery = $checkRes = null;
+		// }
 	}
 ?>
-<?php require_once 'inc/footer.php'; ?>
 <script type="text/javascript">
 	$(function() {
 		let data = [];

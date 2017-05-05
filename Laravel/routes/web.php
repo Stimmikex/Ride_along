@@ -29,11 +29,11 @@ Route::group(['prefix' => 'tests'], function() {
 	Route::get('carapi', function() { return view('/tests/carapi'); });
 });
 
-Route::group(['prefix' => '/resources/view/ride'], function() {
-	Route::get('offer_ride', function() {return view('/offer_ride');});
-	Route::get('request_ride', function() {return view('/ride/request_ride');});
-	Route::get('planner', function() {return view('/ride/planner');});
-	Route::get('check_plan', function() {return view('/ride/check_plan');});
+Route::group(['prefix' => 'ride'], function() {
+	Route::get('offer_ride', 'RideController@offer_ride');
+	Route::get('request_ride', 'RideController@request_ride');
+	Route::get('planner', 'PlannerController@planner');
+	Route::get('check_plan', 'RideController@check_plan');
 });
 
 Route::post('sendmessage', 'ChatController@sendMessage');

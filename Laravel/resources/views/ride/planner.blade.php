@@ -51,7 +51,6 @@
 			</div>
 		</form>
 	@endif
-
 </div>
 <?php
 	// if (isset($_POST['submit'])) {
@@ -99,54 +98,9 @@
 	// 	$rideRes = null;
 
 	// 	echo '<h2>Plan added</h2>';
-	// } else {
-?>
-{{-- <form method="post">
-	<div><label>Name of the plan</label><input type="text" name="plan_name" class="plan_name"></div>
-	<div class="day_select">
-		<ul>
-			<?php
-				// for ($i = 0; $i < count($days); $i++) {
-				// 	echo '<li class="li_planner"><input type="checkbox" name="dy[]" id="day'.$i.'" class="day" value="'.$i.'"><label for="day'.$i.'"> '.$days[$i].'</label>';
-				// 	echo '<ul id="day'.$i.'_ul" class="day_ul"><li>';
-				// 	echo '<label>Time</label><input type="text" name="day'.$i.'_drop" class="day_drop"><label>Nearest Location</label><select value="'.$i.'" name="from'.$i.'" id="from'.$i.'" class="request_location"><option value="-1" disabled selected>Pick</option>';
-
-				// 	$query = "SELECT id, name FROM location ORDER BY name ASC";
-				// 	$res = $db->prepare($query);
-				// 	$res->execute();
-
-				// 	while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
-				// 		echo '<option value="'.$row['id'].'">'.$row['name'].'</option>';
-				// 	}
-
-				// 	echo '</select><label>Location of dropoff</label>';
-				// 	echo '<select name="to'.$i.'" id="to'.$i.'" class="request_location"><option value="-1" disabled selected>Pick</option>';
-
-				// 	$res->execute();
-
-				// 	while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
-				// 		echo '<option value="'.$row['id'].'">'.$row['name'].'</option>';
-				// 	}
-
-				// 	$res = null;
-
-				// 	echo '</select><iframe width="100%" height="300" frameborder="0" style="border:0"
-				// 			src="" id="map'.$i.'"
-				// 			allowfullscreen></iframe>';
-				// 	echo '</li></ul></li>';
-				// }
-			?>
-		</ul>
-	</div>
-	<div>
-		<input type="submit" name="submit" class="plan_submit">
-	</div>
-</form> --}}
-<?php
 	// }
 ?>
-<?php // require_once 'inc/footer.php'; ?>
-// <script type="text/javascript">
+<script type="text/javascript">
 	/* let red = '#E6393C';
 	let green = '#92E639';
 
@@ -194,5 +148,5 @@
 	//   &origin=Oslo+Norway
 	//   &destination=Telemark+Norway
 	//   &avoid=tolls|highways
-// </script>
+</script>
 @endsection
