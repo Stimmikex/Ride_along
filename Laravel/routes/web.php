@@ -34,7 +34,7 @@ Route::group(['prefix' => 'ride'], function() {
 	Route::get('planner', 'PlannerController@planner');
 	Route::get('check_plan', 'RideController@check_plan');
 
-	Route::group(['prefix', 'offer_ride'], function() {
+	Route::group(['prefix' => 'offer_ride'], function() {
 		Route::get('/', 'RideController@offer_ride');
 		Route::get('submit', 'RideController@offer_ride_submit');
 	});
