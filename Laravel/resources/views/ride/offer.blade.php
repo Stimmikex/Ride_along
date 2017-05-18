@@ -3,8 +3,15 @@
 
 @if($submitted)
 	<h3>{{ $output }}</h3>
+	<div style="display:none;" id="data"><span id="datalength">{{ $ride_count }}</span>
+	@for($i = 0; $i < $ride_count; $i++)
+	<span id="data{{ $i }}">{{ $ride_data[$i]->user_id }};{{ $ride_data[$i]->user_name }};{{ $ride_data[$i]->user_img }};{{ $ride_data[$i]->request_time }};{{ $ride_data[$i]->request_message }}</span>
+	@endfor
+	</div>
+	<div class="user_info"></div>
 @else
 	<form action="/ride/offer_ride/submit" method="POST" accept-charset="UTF-8">
+		{{ csrf_field() }}
 		<label>Nearest Location</label>
 		<select name="from" class="offer_location">
 			<option value="-1" disabled selected>Pick</option>

@@ -36,7 +36,7 @@ Route::group(['prefix' => 'ride'], function() {
 
 	Route::group(['prefix' => 'offer_ride'], function() {
 		Route::get('/', 'RideController@offer_ride');
-		Route::get('submit', 'RideController@offer_ride_submit');
+		Route::post('submit', 'RideController@offer_ride_submit');
 	});
 });
 

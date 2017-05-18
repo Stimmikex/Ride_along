@@ -23,6 +23,8 @@ class RideController extends Controller
 
 		$submitted = true;
 		$output = null;
+		$ride_data = [];
+		$ride_count = 0;
 
 		$from_id = intval($req->input('from'));
 		$to_id = intval($req->input('to'));
@@ -32,10 +34,13 @@ class RideController extends Controller
 		else
 		{
 			DB::select("CALL add_ride($user_id, $to_id, $from_id, null, 0)");
+			$ride_data = DB::select("CALL get_ride_requests($to_id, $from_id)");
+			$ride_count = count($ride_data);
+
 			$output .= "Offer added";
 		}
 
-		return view('ride.offer', compact('output', 'submitted'));
+		return view('ride.offer', compact('output', 'submitted', 'ride_data', 'ride_count'));
 	}
 
 	public function request_ride()
