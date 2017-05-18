@@ -28,68 +28,38 @@
 	// 	}
 	// } else {
 ?>
-<form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST" accept-charset="UTF-8">
-	<label>Nearest Location</label>
-	<select name="from" class="request_location">
-		<option value="-1" disabled selected>Pick</option>
-	    <?php
-			// $query = "SELECT id, name FROM location ORDER BY name ASC";
-			// $res = $db->prepare($query);
-			// $res->execute();
-
-			// while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
-			// 	echo '<option value="'.$row['id'].'">'.$row['name'].'</option>';
-			// }
-		?>
-	</select>
-	<label>Location of dropoff</label>
-	<select name="to" class="request_location">
-		<option value="-1" disabled selected>Pick</option>
-	    <?php
-			// $res->execute();
-
-			// while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
-			// 	echo '<option value="'.$row['id'].'">'.$row['name'].'</option>';
-			// }
-
-			// $res = null;
-		?>
-	</select>
-	<label>Message</label>
-	<div class="input-field">
-		<textarea class="request_message" id="textarea" name="message" maxlength="200"></textarea>
-		<div id="textarea_feedback"></div>
-	</div>
-	<input type="submit" name="submit" value="Add" class="request_submit">
-	<?php
-		// if (isset($_POST['submit'])) {
-		// 	$from = $_POST['from'];
-		// 	$to = $_POST['to'];
-		// 	$message = $_POST['message'];
-
-		// 	$insert_request = "INSERT INTO request (to_id, from_id, message, user_id) VALUES (:to_id, :from_id, :message, :user_id)";
-		// 	$rideRes = $db->prepare($insert_request);
-		// 	$rideRes->bindParam(':to_id', $to);
-		// 	$rideRes->bindParam(':from_id', $from);
-		// 	$rideRes->bindParam(':message', $message);
-		// 	$rideRes->bindParam(':user_id', $userID);
-		// 	$rideRes->execute();
-
-		// 	header('Location: request.php');
-		// }
-	?>
-</form>
-<?php
-	// }
-
-	// $SelectRes = null;
-?>
+@if($submitted)
+	<h3>{{ $output }}</h3>
+@else
+	<form action="/ride/request_ride/submit" method="POST" accept-charset="UTF-8">
+		<label>Pickup location</label>
+		<select name="from" class="request_location">
+			<option value="-1" disabled selected>Pick</option>
+			@for($i = 0; $i < count($locations); $i++)
+				<option value="{{ $locations[$i]->id }}">{{ $locations[$i]->location_name }}</option>
+			@endfor
+		</select>
+		<label>Dropoff location</label>
+		<select name="to" class="request_location">
+			<option value="-1" disabled selected>Pick</option>
+			@for($i = 0; $i < count($locations); $i++)
+				<option value="{{ $locations[$i]->id }}">{{ $locations[$i]->location_name }}</option>
+			@endfor
+		</select>
+		<label>Message</label>
+		<div class="input-field">
+			<textarea class="request_message" id="textarea" name="message" maxlength="200"></textarea>
+			<div id="textarea_feedback"></div>
+		</div>
+		<input type="submit" name="submit" value="Add" class="request_submit">
+	</form>
+@endif
 <script type="text/javascript">
 	$(document).ready(function() {
 	    var text_max = 200;
 	    $('#textarea_feedback').html(text_max + ' characters remaining');
 
-	    $('#textarea').keydown(function() {
+	    $('#textarea').on('keyup', function() {
 	        var text_length = $('#textarea').val().length;
 	        var text_remaining = text_max - text_length;
 

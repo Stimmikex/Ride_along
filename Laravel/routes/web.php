@@ -30,13 +30,17 @@ Route::group(['prefix' => 'tests'], function() {
 });
 
 Route::group(['prefix' => 'ride'], function() {
-	Route::get('request_ride', 'RideController@request_ride');
 	Route::get('planner', 'PlannerController@planner');
 	Route::get('check_plan', 'RideController@check_plan');
 
 	Route::group(['prefix' => 'offer_ride'], function() {
 		Route::get('/', 'RideController@offer_ride');
 		Route::post('submit', 'RideController@offer_ride_submit');
+	});
+
+	Route::group(['prefix' => 'request_ride'], function() {
+		Route::get('/', 'RideController@request_ride');
+		Route::post('submit', 'RideController@request_ride_submit');
 	});
 });
 
