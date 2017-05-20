@@ -7,6 +7,16 @@ use DB;
 
 class RideController extends Controller
 {
+	private function has_open_request($user_id)
+	{
+		$query = DB::table('ride')->where(['user_id' => $user_id, 'available' => 1])->value('id');
+
+		if (count($query) > 0)
+			return true;
+		else
+			return false;
+	}
+
 	public function offer_ride()
 	{
 		$this->logincheck();
@@ -29,15 +39,15 @@ class RideController extends Controller
 		$from_id = intval($req->input('from'));
 		$to_id = intval($req->input('to'));
 
-		if ($from_id == -1 || $to_id == -1)
-			$output .= "Please select both locations.<br>";
+		if ($from_id < 1 || $to_id < 1)
+			$output .= 'Please select both locations.';
 		else
 		{
 			DB::select("CALL add_ride($user_id, $to_id, $from_id, null, 0)");
 			$ride_data = DB::select("CALL get_ride_requests($to_id, $from_id)");
 			$ride_count = count($ride_data);
 
-			$output .= "Offer added";
+			$output .= 'Offer added';
 		}
 
 		return view('ride.offer', compact('output', 'submitted', 'ride_data', 'ride_count'));
@@ -45,7 +55,11 @@ class RideController extends Controller
 
 	public function request_ride()
 	{
-		$this->logincheck();
+		$user_id = $this->getUserID();
+
+		if (has_open_request($user_id)) {
+			$output = '';
+		}
 
 		$submitted = false;
 		$locations = DB::select('CALL get_all_locations()');
@@ -55,7 +69,7 @@ class RideController extends Controller
 
 	public function request_ride_submit(Request $req)
 	{
-		$this->getUserID();
+		$user_id = $this->getUserID();
 
 		$output = null;
 		$submitted = true;
@@ -63,12 +77,12 @@ class RideController extends Controller
 		$to_id = intval($req->input('to'));
 		$message = $req->input('message');
 
-		if ($from_id == -1 || $to_id == -1)
-			$output .= "Please select both locations.<br>";
+		if ($from_id < 1 || $to_id < 1)
+			$output .= 'Please select both locations.';
 		else
 		{
-			DB::select("CALL add_ride($user_id, $to_id, $from_id, $message, 1)");
-			$output .= "Request added";
+			DB::select("CALL add_ride($user_id, $to_id, $from_id, '$message', 1)");
+			$output .= 'Request added';
 		}
 
 		return view('ride.request', compact('output', 'submitted'));

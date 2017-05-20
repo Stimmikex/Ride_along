@@ -32,6 +32,7 @@
 	<h3>{{ $output }}</h3>
 @else
 	<form action="/ride/request_ride/submit" method="POST" accept-charset="UTF-8">
+		{{ csrf_field() }}
 		<label>Pickup location</label>
 		<select name="from" class="request_location">
 			<option value="-1" disabled selected>Pick</option>
