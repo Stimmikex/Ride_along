@@ -9,7 +9,7 @@ class RideController extends Controller
 {
 	private function has_open_request($user_id)
 	{
-		$query = DB::table('ride')->where(['user_id' => $user_id, 'available' => 1])->value('id');
+		$query = DB::table('ride')->where(['user_id' => $user_id, 'available' => 1, 'is_request' => 1])->value('id');
 
 		if (count($query) > 0)
 			return true;
@@ -30,6 +30,7 @@ class RideController extends Controller
 	public function offer_ride_submit(Request $req)
 	{
 		$user_id = $this->getUserID();
+		$hasOpenRequest = false;
 
 		$submitted = true;
 		$output = null;
@@ -50,26 +51,29 @@ class RideController extends Controller
 			$output .= 'Offer added';
 		}
 
-		return view('ride.offer', compact('output', 'submitted', 'ride_data', 'ride_count'));
+		return view('ride.offer', compact('output', 'submitted', 'ride_data', 'ride_count', 'hasOpenRequest'));
 	}
 
 	public function request_ride()
 	{
 		$user_id = $this->getUserID();
+		$hasOpenRequest = false;
 
-		if (has_open_request($user_id)) {
-			$output = '';
+		if ($this->has_open_request($user_id)) {
+			$output = 'You already have a request.';
+			$hasOpenRequest = true;
 		}
 
 		$submitted = false;
 		$locations = DB::select('CALL get_all_locations()');
 
-		return view('ride.request', compact('locations', 'submitted'));
+		return view('ride.request', compact('locations', 'submitted', 'hasOpenRequest'));
 	}
 
 	public function request_ride_submit(Request $req)
 	{
 		$user_id = $this->getUserID();
+		$hasOpenRequest = false;
 
 		$output = null;
 		$submitted = true;
@@ -85,7 +89,23 @@ class RideController extends Controller
 			$output .= 'Request added';
 		}
 
-		return view('ride.request', compact('output', 'submitted'));
+		return view('ride.request', compact('output', 'submitted', 'hasOpenRequest'));
+	}
+
+	public function cancel_request()
+	{
+		/* Get the user id */
+		$user_id = $this->getUserID();
+		$hasOpenRequest = false;
+		$submitted = false;
+		$output = null;
+		$locations = DB::select('CALL get_all_locations()');
+
+		/* Cancel the request */
+		DB::table('ride')->where(['user_id' => $user_id, 'available' => 1, 'is_request' => 1])->update(['available' => 0]);
+
+		/* Go to the request page */
+		return view('ride.request', compact('locations', 'output', 'submitted', 'hasOpenRequest'));
 	}
 
 	public function planner()
